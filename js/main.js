@@ -25,7 +25,6 @@ require.config({
     ]
 });
 
-// hey Angular, we're bootstrapping manually!
 window.name = "NG_DEFER_BOOTSTRAP!";
 
 require( [
@@ -39,6 +38,5 @@ require( [
     angular.element().ready(function() {
         $html.addClass('ng-app');
         angular.bootstrap($html, [init['name']]);
-        //angular.bootstrap(angular.element($('#searchpanel')),)
     });
 });

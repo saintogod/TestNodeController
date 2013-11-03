@@ -4,11 +4,12 @@ require.config({
         jquery      : 'lib/jquery/jquery-1.10.2',
         bootstrap   : 'lib/bootstrap/bootstrap',
         angular     : 'lib/angular/angular',
-        modernizr   : 'lib/modernizr/modernizr.custom.js',
+        modernizr   : 'lib/modernizr/modernizr.custom',
         jqueryui    : 'lib/jquery/plugins/jquery-ui/jquery-ui-1.10.3.custom',
         jnotify     : 'lib/jquery/plugins/jquery-notify/jnotify',
         jlayout     : 'lib/jquery/plugins/jquery-layout/jquery.layout-latest',
-        jminimalect : 'lib/jquery/plugins/jquery-minimalect/jquery.minimalect'
+        jminimalect : 'lib/jquery/plugins/jquery-minimalect/jquery.minimalect',
+        jslimscroll :  'lib/jquery/plugins/jquery-slimscroll/jquery.slimscroll'
     },
     shim: {
         "jquery"        : { exports: '$' },
@@ -17,7 +18,9 @@ require.config({
         "jnotify"       : { deps: ["jquery"], exports: "jnotify" },
         "jlayout"       : { deps: ["jquery", "jqueryui"], exports: "jlayout" },
         "jminimalect"   : { deps: ["jquery"] },
-        "angular"       : { exports: "angular" }
+        "jslimscroll"   : { deps: ["jquery"] },
+        "angular"       : { exports: "angular" },
+        "modernizr"     : { exports: "modernizr" }
     },
     priority: [
         "jquery",
@@ -30,8 +33,9 @@ window.name = "NG_DEFER_BOOTSTRAP!";
 require( [
     'jquery',
     'angular',
-    'app/init'
-], function($, angular, init, site, searchbox) {
+    'app/init',
+    'modernizr'
+], function($, angular, init, modernizr) {
     'use strict';
     var $html = angular.element(document.getElementsByTagName('html')[0]);
 

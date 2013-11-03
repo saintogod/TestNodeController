@@ -135,20 +135,6 @@ a, button {
     background: rgb(21, 40, 54);
 }
 
-#leftpanel{
-    float: left;
-    background-color: #772860;
-    width: 70%;
-    height: 100%;
-}
-#rightpanel {
-    float: right;
-    background-color: #34629D;
-    width: 30%;
-    height: 100%;
-    min-width: 200px;
-}
-
 /* For screen bigger than 800px */
 @media (min-width: 50em) {
 
@@ -405,10 +391,7 @@ a, button {
     }
 }
 
-
-/* change the leftpanel and rightpanel float */
-
-@media (min-width: 880px) and (max-width: 1024){
+@media (min-width: 880px) and (max-width: 1024px){
     #container{
         width: 90% !important;
     }
@@ -417,14 +400,5 @@ a, button {
 @media (max-width: 880px){
     #container{
         width: 100% !important;
-    }
-    #leftpanel{
-        width: 100% !important;
-        height: auto !important;
-    }
-    #rightpanel {
-        float: left !important;
-        width: 100% !important;
-        height: auto !important;
     }
 }

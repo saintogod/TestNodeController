@@ -1,1 +1,0 @@
-var ScriptPage = angular.module('scriptpage', ['scriptpage.service', 'scriptpage.directive', 'scriptpage.filter']);

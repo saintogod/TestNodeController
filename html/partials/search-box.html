@@ -1,0 +1,12 @@
+<div id="searchpanel" class="float-right">
+    <div id="serarchbox">
+        <input type="text" id="searchinput" class="search-box" placeholder="Search..." aria-haspopup="true" autocomplete="off" aria-owns="searchresult" ng-model="searchText" on-enter="search()">
+        <span class="reset" ng-click="searchText = ''" ng-show="searchText.length > 0"></span>
+    </div>
+    <div id="searchresult" class="">
+        <img src="/img/callout-up.gif" class="callout" />
+        <ul>
+            <li class="search-summary">Search Result</li>
+        </ul>
+    </div>
+</div>

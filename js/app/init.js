@@ -1,9 +1,6 @@
-define([
-    'jquery',
-    'angular',
-    'app/controllers/site',
-    'app/controllers/searchbox',
-    'app/directives/directives', 'jlayout'], function ($, angular, site, searchbox, directives){
+define(['jquery', 'angular', 'app/controllers/_controllers', 'app/directives/_directives', 'jlayout'],
+    function($, angular) {
+        'use strict';
         $('#container').layout({
             closable: false,
             resizable: false,
@@ -14,25 +11,20 @@ define([
             north__size: 120,
             center__maxSize: 0
         });
-        $("#listcontainer").sortable({
-            connectWith: "#listcontainer"
+        $("#testnodelist").sortable({
+            connectWith: "#testnodelist"
         });
         $(".list-item").addClass("ui-widget ui-widget-content ui-helper-clearfix ui-corner-all")
             .find(".item-header")
             .addClass("ui-widget-header ui-corner-all")
-            .prepend("<span class='ui-icon ui-icon-minusthick'></span>")
-            .end()
-            .find(".item-content");
+            .end();
 
         $(".item-header .ui-icon").click(function() {
             $(this).toggleClass("ui-icon-minusthick").toggleClass("ui-icon-plusthick");
             $(this).parents(".list-item:first").find(".item-content, .item-footer").toggle();
         });
 
-        $("#listcontainer").disableSelection();
+        $("#testnodelist").disableSelection();
 
-        return angular.module('ScriptPage',[
-                'ScriptPage.controllers',
-                'ScriptPage.directives'
-            ]);
-});
+        return angular.module('TestNodeController', ['TestNodeController.controllers', 'TestNodeController.directives']);
+    });

@@ -1,9 +1,9 @@
 define(['jquery','angular'], function ($, angular) {
     'use strict';
-    return angular.module('ScriptPage.controllers',[]).controller('MainContainerCtrl', ['$scope',
+    return angular.module('TestNodeController.controllers',[]).controller('TestNodeCtrl', ['$scope',
         function($scope){
             $scope.init = function(){
-                //alert('in angular');
+                console.log('TestNodeCtrl init');
             };
             $scope.init();
         }

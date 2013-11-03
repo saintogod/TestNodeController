@@ -1,0 +1,49 @@
+<section class="list-item" ng-controller="TestNodeCtrl">
+    <div class="item-header">
+        <div class="row">
+            <div class="col-md-3" id="NodeName">
+              {{testNode.NodeName}}
+            </div>
+            <div class="col-md-3" id="Status" >
+              {{testTask.Status}}
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group btn-group-xs">
+                    <button class="btn btn-default" id="Lock">{{testNode.Locked && "Release" || "Lock"}}</button>
+                    <button class="btn btn-default" id="RunAgain">RunAgain</button>
+                    <button class="btn btn-default" id="RunFailed">RunFailed</button>
+                    <button class="btn btn-default" id="Duplicate">Duplicate</button>
+                </div>
+                <span class='ui-icon ui-icon-minusthick float-right hide-toggle item-dragger'></span>
+            </div>
+        </div>
+    </div>
+    <div class="item-content">
+      <div class="row">
+          <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-4" id="UserName" >{{testTask.UserName}}</div>
+                    <div class="col-md-4" id="ProjectName" >{{testTask.ProjectName}}</div>
+                    <div class="col-md-4" id="TaskType" >{{testTask.TaskType}}</div>
+                </div>
+               <div class="row">
+                   <div class="col-md-12" id="SvnUrl" >{{testTask.SvnUrl}}
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="col-md-12" id="TestArgs" >{{testTask.TestArgs}}
+                   </div>
+               </div>
+               <div class="row">
+                   <div class="col-md-6" id="StartTime" >{{testTask.StartTime}}
+                   </div>
+                   <div class="col-md-6" id="FinishTime" >{{testTask.FinishTime}}
+                    </div>
+               </div>
+           </div>
+           <div class="col-md-4" >
+            <div id="Messages">{{testTask.Messages}}</div>
+           </div>
+       </div>
+    </div>
+</section>

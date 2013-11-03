@@ -225,6 +225,18 @@ footer {
     -moz-border-radius: 16px;
     border-radius:  16px;
 }
+    #controlpanel .btn{
+        height: 24px;
+    }
+    #controlpanel .btn:first-child{
+        -webkit-border-bottom-left-radius: 16px;
+        border-bottom-left-radius: 16px;
+        -moz-border-bottom-left-radius: 16px;
+        -webkit-border-top-left-radius: 16px;
+        border-top-left-radius: 16px;
+        -moz-border-top-left-radius: 16px;
+    }
+
 #testnodelist {
     width: 100%;
 }
@@ -232,7 +244,7 @@ footer {
         margin: 10px 0 0 5px;
     }
         .list-item .item-header{
-            margin: 4px;
+            margin-top: 2px;
             padding-bottom: 4px;
         }
         .list-item .item-header .ui-icon {
@@ -257,8 +269,21 @@ footer {
     margin: 0;
     background-color: rgba(86,61,124,.15);
     border: 1px solid rgba(86,61,124,.2);
+
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .row {
     margin: 0;
     padding: 0;
+}
+.item-footer .btn{
+    font-size: 12px;
+}
+#testnodelist>section{
+    padding: 0 5px;
+}
+#NodeName,#Status{
+    height: 24px;
 }

@@ -1,6 +1,6 @@
 define(['angular'], function (angular) {
     'use strict';
-    angular.module('TestNodeController.contollers', []);
+    angular.module('TestNodeController.controllers', []);
     angular.module('TestNodeController.services', []);
     angular.module('TestNodeController.directives', []);
     angular.module('TestNodeController.filters', []);

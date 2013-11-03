@@ -2,7 +2,7 @@
 <html lang="en" class="ng-app">
 <head>
     <link rel="shortcut icon" href="/favicon.ico">
-    <meta name="descripton" content="Test Node List">
+    <meta name="descripton" content="Test Node ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
@@ -79,11 +79,19 @@
         <div id="mainContent" class="ui-layout-center hide-element">
             <div>
                 <div id="controlpanel" ng-controller="ControllerPanelCtrl">
+                    <div class="btn-group btn-group-xs">
+                        <button id="LockPosition" class="btn btn-default" title="{{lockTip}}">Lock/UnLock</button>
+                        <button id="AddTask" class="btn btn-default" title="Add a new task">Add New Task</button>
+                        <button id="ResetId" class="btn btn-default" title="Reset the task id to 1">Reset Id</button>
+                        <button id="ReloadStatus" class="btn btn-default" title="Reload TestNode status from config file">Reload</button>
+                    </div>
                     <tnc-search-box></tnc-search-box>
                 </div>
             </div>
             <div class="contrainer">
-                <div id="testnodelist"></div>
+                <div id="testnodelist">
+                    <test-node-item></test-node-item>
+                </div>
                 <div id="pendingtasklist"></div>
                 <div id="finishedtasklist"></div>
             </div>

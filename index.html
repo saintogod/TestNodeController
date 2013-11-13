@@ -76,7 +76,7 @@
                 </nav>
             </div>
         </header>
-        <div id="mainContent" class="ui-layout-center hide-element">
+        <div id="mainContent" class="ui-layout-center hide-element" ng-controller="TestNodeCtrl">
             <div>
                 <div id="controlpanel" ng-controller="ControllerPanelCtrl">
                     <div class="btn-group btn-group-xs">
@@ -89,11 +89,15 @@
                 </div>
             </div>
             <div class="contrainer">
-                <div id="testnodelist">
-                    <test-node-item></test-node-item>
+                <div id="testnodelist" ng-repeat="nodeInfo in testNodeList">
+                    <test-node-item content="nodeInfo"></test-node-item>
                 </div>
-                <div id="pendingtasklist"></div>
-                <div id="finishedtasklist"></div>
+                <div id="pendingtasklist" ng-repeat="pendingTask in pendingTaskList">
+                    <test-node-item content="pendingTask"></test-node-item>
+                </div>
+                <div id="finishedtasklist" ng-repeat="finishedTask in finishedTaskList">
+                    <test-node-item content="finishedTask"></test-node-item>
+                </div>
             </div>
         </div>
         <footer class="ui-layout-south hide-element"></footer>

@@ -1,4 +1,4 @@
-<section class="list-item" ng-controller="TestNodeCtrl">
+<section class="list-item">
     <div class="item-header">
         <div class="row">
             <div class="col-md-3" id="NodeName">
@@ -21,29 +21,30 @@
     <div class="item-content">
       <div class="row">
           <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-4" id="UserName" >{{testTask.UserName}}</div>
-                    <div class="col-md-4" id="ProjectName" >{{testTask.ProjectName}}</div>
-                    <div class="col-md-4" id="TaskType" >{{testTask.TaskType}}</div>
-                </div>
-               <div class="row">
-                   <div class="col-md-12" id="SvnUrl" >{{testTask.SvnUrl}}
-                   </div>
-               </div>
-               <div class="row">
-                   <div class="col-md-12" id="TestArgs" >{{testTask.TestArgs}}
-                   </div>
-               </div>
-               <div class="row">
-                   <div class="col-md-6" id="StartTime" >{{testTask.StartTime}}
-                   </div>
-                   <div class="col-md-6" id="FinishTime" >{{testTask.FinishTime}}
-                    </div>
-               </div>
-           </div>
-           <div class="col-md-4" >
-            <div id="Messages">{{testTask.Messages}}</div>
-           </div>
+              <div class="row">
+                  <div class="col-md-4" id="UserName" >{{testTask.UserName}}</div>
+                  <div class="col-md-4" id="ProjectName" >{{testTask.ProjectName}}</div>
+                  <div class="col-md-4" id="TaskType" >{{testTask.TaskType}}</div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12" id="SvnUrl" >{{testTask.SvnUrl}}</div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12" id="TestArgs" >{{testTask.TestArgs}}</div>
+              </div>
+              <div class="row" id="TimeInfo">
+                  <div class="col-md-6" id="StartTime" >{{testTask.StartTime}}</div>
+                  <div class="col-md-6" id="FinishTime" >{{testTask.FinishTime}}</div>
+              </div>
+          </div>
+        <div class="col-md-4" >
+            <div id="Messages">
+                <p>{{testTask.Messages}}</p>
+            </div>
+            <div class="row" id="Links">
+                <a href="#">abc</a>&nbsp;<a href="#">abc</a>&nbsp;<a href="#">abc</a>
+            </div>
+          </div>
        </div>
     </div>
 </section>

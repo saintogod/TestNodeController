@@ -5,12 +5,14 @@ define(['jquery', 'angular', 'app/TestNodeController', 'jslimscroll'],
             .directive('testNodeItem', function() {
                 return {
                     restrict: 'EA',
-                    scope: {},
+                    scope: {
+                        content:'='
+                    },
                     replace: true,
-                    transclude: true,
+                    transclude: false,
                     templateUrl: '/html/partials/test-node-item.html',
+                    controller:  "TestNodeItemCtrl",
                     link: function(scope, element, attrs) {
-                        scope.type = attrs.type;
                         element.addClass('ui-widget ui-widget-content ui-helper-clearfix ui-corner-all')
                             .find('item-header')
                             .addClass('ui-widget-header ui-corner-all')
@@ -19,7 +21,7 @@ define(['jquery', 'angular', 'app/TestNodeController', 'jslimscroll'],
                                 $(this).toggleClass("ui-icon-minusthick").toggleClass("ui-icon-plusthick");
                                 $(this).parents(".list-item:first").find(".item-content").toggle();
                             }).end();
-                        element.find('#Messages').slimScroll({height: "88px"});
+                        element.find('#Messages').slimScroll({height: "60px"});
                     }
                 };
             });

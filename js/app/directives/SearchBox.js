@@ -30,9 +30,9 @@ define(['jquery', 'angular','app/TestNodeController'],
                         }
                     });
                     element.bind("focusin", function(event) {
-                        $('#searchpanel').animate({width: "60%"}, 600);
+                        $('#searchpanel').stop(true, true).animate({width: "60%"}, 600);
                     }).bind("focusout", function(event) {
-                        $('#searchpanel').animate({width: "35%"}, 600);
+                        $('#searchpanel').stop(true, true).animate({width: "35%"}, 600);
                     });
                 };
             });

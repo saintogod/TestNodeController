@@ -260,15 +260,10 @@ footer {
         visibility: hidden;
     }
 
-#Operation{
-    font-size: 12px;
-    padding-top: -4px;
-}
 [class*="col-"] {
     padding: 0;
     margin: 0;
     background-color: rgba(86,61,124,.15);
-    border: 1px solid rgba(86,61,124,.2);
 
     overflow: hidden;
     white-space: nowrap;
@@ -282,8 +277,21 @@ footer {
     font-size: 12px;
 }
 #testnodelist>section{
-    padding: 0 5px;
+    padding: 0px 5px;
 }
 #NodeName,#Status{
     height: 24px;
+}
+#Messages p{
+    font-family: Calibri, Arial, sans-serif;
+    font-size: 14px;
+    white-space: pre-wrap;
+    line-height: 14px;
+}
+.item-header .btn{
+    height: 24px;
+    border-radius: 0;
+}
+.btn{
+    border: 0 solid transparent;
 }

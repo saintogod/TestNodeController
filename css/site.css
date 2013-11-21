@@ -1,8 +1,8 @@
 body, html {
     height: 100%;
     font-size: 100%;
-    min-height: 800px;
-    min-width: 365px;
+    min-height: 600px;
+    min-width: 1000px;
     line-height: 20px;
     background-color: #AFC2E4;
     padding: 0px;
@@ -32,7 +32,15 @@ a {
 a:hover {
     color: #fff;
 }
+label{
+    margin-bottom: 0px;
+}
 
+@media screen and (max-width: 25em) {
+    .logo {
+        font-size: 75%;
+    }
+}
 .main {
     width: 100%;
     margin: 0 auto;
@@ -50,11 +58,6 @@ a:hover {
     font-size: 25px;
 }
 
-@media screen and (max-width: 25em) {
-    .logo {
-        font-size: 75%;
-    }
-}
 .hide-element {
     display: none;
 }
@@ -260,14 +263,20 @@ footer {
         visibility: hidden;
     }
 
-[class*="col-"] {
+.list-item [class*="col-"] {
     padding: 0;
     margin: 0;
-    background-color: rgba(86,61,124,.15);
-
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    border: 1px solid #ddd;
+}
+form [class*="col-"] {
+    padding-left: 0px;
+    margin-top: 10px;
+}
+form label[class*="col-"]{
+    padding-top: 5px;
 }
 .row {
     margin: 0;
@@ -279,7 +288,7 @@ footer {
 #testnodelist>section{
     padding: 0px 5px;
 }
-#NodeName,#Status{
+.item-header [class*="col-"] {
     height: 24px;
 }
 #Messages p{
@@ -294,4 +303,62 @@ footer {
 }
 .btn{
     border: 0 solid transparent;
+}
+#Links.row{
+    font-size: 14px;
+}
+.window-overlay
+{
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+    display:none;
+    margin-bottom:50px;
+}
+    .window-overlay.in
+    {
+       display: block;
+    }
+    .window-overlay.in .modal
+    {
+        display: block;
+        overflow: hidden;
+        opacity: 1;
+    }
+.modal.fade .modal-dialog
+{
+    margin-top: 200px;
+}
+.row.form-group{
+    width: 100%;
+}
+textarea.form-control {
+    max-width: 100%;
+    max-height: 80px;
+}
+#CreateTestTaskDlg fieldset {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+    #CreateTestTaskDlg fieldset legend{
+        font-size: 1.2em !important;
+        font-weight: bold !important;
+        text-align: left !important;
+        width:auto;
+        padding:0 10px;
+        border-bottom:none;
+    }
+.checkbox {
+    margin-right: 4px !important;
 }

@@ -1,0 +1,30 @@
+<div id="testnodeselector">
+    <div class="row">
+        <span>
+            <input type="checkbox" ng-model="runAtAny" class="checkbox">Run at any idle test node.
+        </span>
+    </div>
+    <div ng-show="!runAtAny">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <span>
+                    <input type="checkbox" ng-model="selectAll" id="select-all" class="checkbox">{{ selectAll ? "Clear Select": "Select All"}}
+                </span>
+            </div>
+            <div class="form-group col-md-3" ng-repeat="testnode in testNodes">
+                <span>
+                    <input type="checkbox" ng-model="testnode.selected" class="checkbox" />{{testnode.name}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 need-tooltip">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input type="checkbox" ng-model="enableExtraNodes">
+                    </span>
+                <input type="text" class="form-control show-tooltip" ng-model="extraNodes" ng-disabled="!enableExtraNodes" data-toggle="tooltip" title="Split multi nodes by comma(,) or semicolon(;)">
+            </div>
+        </div>
+    </div>
+</div>

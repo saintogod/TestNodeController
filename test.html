@@ -11,7 +11,73 @@
                 $('.Messages').slimScroll({
                     height: '80px'
                 });
-            });
+
+                $.isString = function(value) {
+                    return typeof value === "string";
+                };
+                        var EnumObj = {
+            getEnumItem: function(value) {
+                for(var key in this){
+                    var enumItem = this[key];
+                    if($.isNumeric(value) && enumItem.Value === parseInt(value, 10) || $.isString(value) && enumItem.Label === value)
+                        return enumItem;
+                }
+                return null;
+            },
+            compageItems: function(itemL, itemR){
+                for(var attr in itemL)
+                    if(itemL[attr] !== itemR[attr])
+                        return false;
+                return true;
+            },
+            toEnumList: function(){
+                var list = {};
+                for (var m in this) {
+                    if (typeof this[m] !== "function") {
+                        list[m] = this[m];
+                    }
+                }
+                return list;
+            }
+        };
+
+        var EnumItem = {
+            equals: function(enumItem) {
+                if(arguments.length === 0)
+                    return false;
+                else if(arguments.length === 1)
+                    return this.Value === enumItem.Value;
+                else {
+                    for(var i = 0; i < arguments.length; i++)
+                        if(this.Value === arguments[i].Value)
+                            return true;
+                }
+            }
+        };
+var NodeStatusEnum = {
+            Offline:    { Value: -2, Label: "Off-line",     Description: "This node is currently off-line, please check networks." },
+            /**
+             * When the test node can't used to run the auto test or script, as the finalbuilder is running or uninstall in the node.
+             * @type {Object}
+             */
+            Unavailable:{ Value: -1, Label: "Unavailable",  Description: "Can't start FinalBuilder on this node, please make sure FinalBuilder had been installed on this node, and the FinalBuilder is not running currently." },
+            Idle:       { Value:  0, Label: "Idle",         Description: "You can use this node now!" },
+            Locked:     { Value:  1, Label: "Locked",       Description: "This node is locked by some one manually, not locked by task." },
+            Preparing:  { Value:  2, Label: "Preparing",    Description: "This test task has been assigned to this node, it may need a little time to prepare the environment." },
+            Building:   { Value:  4, Label: "Building",     Description: "This node is building the projects right now." },
+            Testing:    { Value:  8, Label: "Testing",      Description: "This node is running the NUnit tests right now." },
+            Scripting:  { Value: 16, Label: "Scripting",    Description: "This node is executing scripts right now." },
+            Finished:   { Value: 32, Label: "Finished",     Description: "All the tasks on this node has been down, please check the logs to get the detail." }
+        };
+                             
+        for(var key in NodeStatusEnum)
+            $.extend(NodeStatusEnum[key], EnumItem);
+        $.extend(NodeStatusEnum, EnumObj);
+                
+                for(var key in NodeStatusEnum.toEnumList())
+                    console.log(item.Value+"-=-"+item.Label);
+
+             });
         </script>
     </head>
     <body>

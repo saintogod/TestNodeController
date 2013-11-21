@@ -4,12 +4,13 @@ require.config({
         jquery      : 'lib/jquery/jquery-1.10.2',
         bootstrap   : 'lib/bootstrap/bootstrap',
         angular     : 'lib/angular/angular',
+        angularRoute: 'lib/angular/angular-route',
         modernizr   : 'lib/modernizr/modernizr.custom',
         jqueryui    : 'lib/jquery/plugins/jquery-ui/jquery-ui-1.10.3.custom',
-        jnotify     : 'lib/jquery/plugins/jquery-notify/jnotify',
+        jnotify     : 'lib/jquery/plugins/jquery-notify/jquery.jnotify',
         jlayout     : 'lib/jquery/plugins/jquery-layout/jquery.layout-latest',
         jminimalect : 'lib/jquery/plugins/jquery-minimalect/jquery.minimalect',
-        jslimscroll :  'lib/jquery/plugins/jquery-slimscroll/jquery.slimscroll'
+        jslimscroll : 'lib/jquery/plugins/jquery-slimscroll/jquery.slimscroll'
     },
     shim: {
         "jquery"        : { exports: '$' },
@@ -20,6 +21,7 @@ require.config({
         "jminimalect"   : { deps: ["jquery"] },
         "jslimscroll"   : { deps: ["jquery"] },
         "angular"       : { exports: "angular" },
+        "angularRoute"  : { deps: ["angular"] },
         "modernizr"     : { exports: "modernizr" }
     },
     priority: [
@@ -34,7 +36,8 @@ require( [
     'jquery',
     'angular',
     'app/init',
-    'modernizr'
+    'modernizr',
+    'bootstrap'
 ], function($, angular, init, modernizr) {
     'use strict';
     var $html = angular.element(document.getElementsByTagName('html')[0]);

@@ -1,50 +1,60 @@
-<section class="list-item">
-    <div class="item-header">
-        <div class="row">
-            <div class="col-md-3" id="NodeName">
-              {{testNode.NodeName}}
-            </div>
-            <div class="col-md-3" id="Status" >
-              {{testTask.Status}}
-            </div>
-            <div class="col-md-6">
-                <div class="btn-group btn-group-xs">
-                    <button class="btn btn-default" id="Lock">{{testNode.Locked && "Release" || "Lock"}}</button>
-                    <button class="btn btn-default" id="RunAgain">RunAgain</button>
-                    <button class="btn btn-default" id="RunFailed">RunFailed</button>
-                    <button class="btn btn-default" id="Duplicate">Duplicate</button>
-                </div>
-                <span class='ui-icon ui-icon-minusthick float-right hide-toggle item-dragger'></span>
-            </div>
+<section class="list-item" ng-class="{{getItemCss()}}">
+  <div class="item-header">
+    <div class="row">
+      <div class="col-md-3" id="NodeName" ng-bind="testNode.NodeName"></div>
+      <div class="col-md-2" id="UserName" ng-bind="testTask.UserName"></div>
+      <div class="col-md-2" id="Status" ng-bind="getStatusText()"></div>
+      <div class="col-md-5 item-dragger">
+        <div class="btn-group btn-group-xs">
+          <button class="btn btn-default" id="Lock" ng-disabled="disableLock()" title="{{getLockBtnTooltip()}}">{{lockBtnText()}}</button>
+          <button class="btn btn-default" id="RunAgain" ng-show="showRunAgain()">RunAgain</button>
+          <button class="btn btn-default" id="RunFailed" ng-show="showRunFailed()">RunFailed</button>
+          <button class="btn btn-default" id="Duplicate" ng-show="testNode.Status.Value > 1">Duplicate</button>
         </div>
+        <span class='ui-icon ui-icon-minusthick float-right hide-toggle' ng-show="testNode.Status.Value > 1"></span>
+      </div>
     </div>
-    <div class="item-content">
-      <div class="row">
-          <div class="col-md-8">
-              <div class="row">
-                  <div class="col-md-4" id="UserName" >{{testTask.UserName}}</div>
-                  <div class="col-md-4" id="ProjectName" >{{testTask.ProjectName}}</div>
-                  <div class="col-md-4" id="TaskType" >{{testTask.TaskType}}</div>
-              </div>
-              <div class="row">
-                  <div class="col-md-12" id="SvnUrl" >{{testTask.SvnUrl}}</div>
-              </div>
-              <div class="row">
-                  <div class="col-md-12" id="TestArgs" >{{testTask.TestArgs}}</div>
-              </div>
-              <div class="row" id="TimeInfo">
-                  <div class="col-md-6" id="StartTime" >{{testTask.StartTime}}</div>
-                  <div class="col-md-6" id="FinishTime" >{{testTask.FinishTime}}</div>
-              </div>
+  </div>
+  <div class="item-content" ng-show="testNode != undefined && testNode.Status.Value > 1">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-3">
+            <span id="ProjectName" title="{{testTask.ProjectName.FullName}}" ng-bind="testTask.ProjectName.Label"></span>
           </div>
-        <div class="col-md-4" >
-            <div id="Messages">
-                <p>{{testTask.Messages}}</p>
-            </div>
-            <div class="row" id="Links">
-                <a href="#">abc</a>&nbsp;<a href="#">abc</a>&nbsp;<a href="#">abc</a>
-            </div>
+          <div class="col-md-3">
+            <span id="TaskType" ng-bind="testTask.TaskType.Label"></span>
           </div>
-       </div>
+          <div class="col-md-3">
+            <span id="Revision" title="Revision" ng-bind="testTask.Revision"></span>
+          </div>
+          <div class="col-md-3">
+            <span id="LfsoRevision" title="LFSO Revision" ng-bind="testTask.LfsoRevision"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span id="SvnUrl" title="{{testTask.SvnUrl}}" ng-bind="testTask.SvnUrl"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <span id="TestArgs" title="TestArgs: {{testTask.TestArgs}}" ng-bind="testTask.TestArgs"></span>
+          </div>
+        </div>
+        <div class="row" id="TimeInfo">
+          <div class="col-md-6" id="StartTime" title="Start Time" ng-bind="testTask.StartTime"></div>
+          <div class="col-md-6" id="FinishTime" title="Finish Time" ng-bind="testTask.FinishTime"></div>
+        </div>
+      </div>
+      <div class="col-md-4" >
+        <div id="Messages">
+          <p ng-bind="testTask.Messages"></p>
+        </div>
+        <div class="row" id="Links">
+          <a href="#">Log</a>&nbsp;<a href="#">Output</a>&nbsp;<a href="#">ResultHtml</a>&nbsp;<a href="#">ResultXML</a>
+        </div>
+      </div>
     </div>
+  </div>
 </section>

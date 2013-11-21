@@ -1,8 +1,10 @@
-define(['angular'], function (angular) {
+define(['angular', 'angularRoute', 'app/util', 'app/models/SharedObjects'],
+    function (angular, ngRoute) {
     'use strict';
-    angular.module('TestNodeController.controllers', []);
     angular.module('TestNodeController.services', []);
-    angular.module('TestNodeController.directives', []);
-    angular.module('TestNodeController.filters', []);
-    return angular.module('TestNodeController', ['TestNodeController.services', 'TestNodeController.filters', 'TestNodeController.contollers', 'TestNodeController.directives']);
+    angular.module('TestNodeController.controllers', ['TestNodeController.services']);
+    angular.module('TestNodeController.directives', ['TestNodeController.services']);
+    angular.module('TestNodeController.filters', ['TestNodeController.services']);
+    var TestNodeController = angular.module('TestNodeController', ['ngRoute', 'TestNodeController.services', 'TestNodeController.filters', 'TestNodeController.controllers', 'TestNodeController.directives']);
+    return TestNodeController;
 });

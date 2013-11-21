@@ -1,5 +1,5 @@
-define(['jquery', 'angular', 'app/controllers/_controllers', 'app/directives/_directives', 'jlayout'],
-    function($, angular) {
+define(['app/TestNodeController', 'app/services/services', 'app/controllers/_controllers', 'app/directives/_directives', 'app/routes/routes', 'jlayout', 'jqueryui'],
+    function(TestNodeController) {
         'use strict';
         $('#container').layout({
             closable: false,
@@ -15,6 +15,6 @@ define(['jquery', 'angular', 'app/controllers/_controllers', 'app/directives/_di
             handle:".item-dragger",
             connectWith: "#testnodelist"
         });
-
-        return angular.module('TestNodeController', ['TestNodeController.controllers', 'TestNodeController.directives']);
-    });
+        return TestNodeController;
+    }
+);

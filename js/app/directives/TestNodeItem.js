@@ -5,9 +5,7 @@ define(['jquery', 'angular', 'app/TestNodeController', 'jslimscroll'],
             .directive('testNodeItem', function() {
                 return {
                     restrict: 'EA',
-                    scope: {
-                        content:'='
-                    },
+                    scope: {},
                     replace: true,
                     transclude: false,
                     templateUrl: '/html/partials/test-node-item.html',
@@ -21,7 +19,7 @@ define(['jquery', 'angular', 'app/TestNodeController', 'jslimscroll'],
                                 $(this).toggleClass("ui-icon-minusthick").toggleClass("ui-icon-plusthick");
                                 $(this).parents(".list-item:first").find(".item-content").toggle();
                             }).end();
-                        element.find('#Messages').slimScroll({height: "60px"});
+                        element.find('#Messages').slimScroll({height: "68px"});
                     }
                 };
             });

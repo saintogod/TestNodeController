@@ -14,7 +14,7 @@
     @font-face {
         font-family: 'icomoon';
         src: url('../fonts/icomoon.svg#icomoon') format('svg');
-    };
+    }
 }
 
 .nav-icon-team, .nav-icon-blog, .nav-icon-home, .nav-icon-portfolio, .nav-icon-services, .nav-icon-contact, .nav-icon-menu {
@@ -60,7 +60,7 @@ a, li {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.nav ul {
+nav.nav ul {
     max-width: 1240px;
     margin: 0;
     padding: 0;
@@ -69,11 +69,11 @@ a, li {
     font-weight: 300;
 }
 
-.nav li span {
+nav.nav li span {
     display: block;
 }
 
-.nav a {
+nav.nav a {
     display: block;
     color: rgba(249, 249, 249, .9);
     text-decoration: none;
@@ -84,7 +84,7 @@ a, li {
     transition: color .5s, background .5s, height .5s;
 }
 
-.nav i{
+nav.nav i{
     /* Make the font smoother for Chrome */
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
@@ -101,37 +101,37 @@ a, button {
 
 /* Hover effect for the whole navigation to make the hovered item stand out */
 
-.no-touch .nav ul:hover a {
+.no-touch nav.nav ul:hover a {
     color: rgba(249, 249, 249, .5);
 }
 
-.no-touch .nav ul:hover a:hover {
+.no-touch nav.nav ul:hover a:hover {
     color: rgba(249, 249, 249, 0.99);
 }
 
 /* Adding some background color to the different menu items */
 
-.nav li:nth-child(6n+1) {
+nav.nav li:nth-child(6n+1) {
     background: rgb(208, 101, 3);
 }
 
-.nav li:nth-child(6n+2) {
+nav.nav li:nth-child(6n+2) {
     background: rgb(233, 147, 26);
 }
 
-.nav li:nth-child(6n+3) {
+nav.nav li:nth-child(6n+3) {
     background: rgb(22, 145, 190);
 }
 
-.nav li:nth-child(6n+4) {
+nav.nav li:nth-child(6n+4) {
     background: rgb(22, 107, 162);
 }
 
-.nav li:nth-child(6n+5) {
+nav.nav li:nth-child(6n+5) {
     background: rgb(27, 54, 71);
 }
 
-.nav li:nth-child(6n+6) {
+nav.nav li:nth-child(6n+6) {
     background: rgb(21, 40, 54);
 }
 
@@ -139,7 +139,7 @@ a, button {
 @media (min-width: 50em) {
 
     /* Transforms the list into a horizontal navigation */
-    .nav li {
+    nav.nav li {
         float: left;
         width: 16.66666666666667%;
         text-align: center;
@@ -150,46 +150,46 @@ a, button {
         transition: border .5s;
     }
 
-    .nav a {
+    nav.nav a {
         height: 86px;
         display: block;
         width: auto;
     }
 
     /* hover, focused and active effects that add a little colored border to the different items */
-    .no-touch .nav li:nth-child(6n+1) a:hover,
-    .no-touch .nav li:nth-child(6n+1) a:active,
-    .no-touch .nav li:nth-child(6n+1) a:focus {
+    .no-touch nav.nav li:nth-child(6n+1) a:hover,
+    .no-touch nav.nav li:nth-child(6n+1) a:active,
+    .no-touch nav.nav li:nth-child(6n+1) a:focus {
         border-bottom: 4px solid rgb(174, 78, 1);
     }
 
-    .no-touch .nav li:nth-child(6n+2) a:hover,
-    .no-touch .nav li:nth-child(6n+2) a:active,
-    .no-touch .nav li:nth-child(6n+2) a:focus {
+    .no-touch nav.nav li:nth-child(6n+2) a:hover,
+    .no-touch nav.nav li:nth-child(6n+2) a:active,
+    .no-touch nav.nav li:nth-child(6n+2) a:focus {
         border-bottom: 4px solid rgb(191, 117, 20);
     }
 
-    .no-touch .nav li:nth-child(6n+3) a:hover,
-    .no-touch .nav li:nth-child(6n+3) a:active,
-    .no-touch .nav li:nth-child(6n+3) a:focus {
+    .no-touch nav.nav li:nth-child(6n+3) a:hover,
+    .no-touch nav.nav li:nth-child(6n+3) a:active,
+    .no-touch nav.nav li:nth-child(6n+3) a:focus {
         border-bottom: 4px solid rgb(12, 110, 149);
     }
 
-    .no-touch .nav li:nth-child(6n+4) a:hover,
-    .no-touch .nav li:nth-child(6n+4) a:active,
-    .no-touch .nav li:nth-child(6n+4) a:focus {
+    .no-touch nav.nav li:nth-child(6n+4) a:hover,
+    .no-touch nav.nav li:nth-child(6n+4) a:active,
+    .no-touch nav.nav li:nth-child(6n+4) a:focus {
         border-bottom: 4px solid rgb(10, 75, 117);
     }
 
-    .no-touch .nav li:nth-child(6n+5) a:hover,
-    .no-touch .nav li:nth-child(6n+5) a:active,
-    .no-touch .nav li:nth-child(6n+5) a:focus {
+    .no-touch nav.nav li:nth-child(6n+5) a:hover,
+    .no-touch nav.nav li:nth-child(6n+5) a:active,
+    .no-touch nav.nav li:nth-child(6n+5) a:focus {
         border-bottom: 4px solid rgb(16, 34, 44);
     }
 
-    .no-touch .nav li:nth-child(6n+6) a:hover,
-    .no-touch .nav li:nth-child(6n+6) a:active,
-    .no-touch .nav li:nth-child(6n+6) a:focus {
+    .no-touch nav.nav li:nth-child(6n+6) a:hover,
+    .no-touch nav.nav li:nth-child(6n+6) a:active,
+    .no-touch nav.nav li:nth-child(6n+6) a:focus {
         border-bottom: 4px solid rgb(9, 18, 25);
     }
 
@@ -208,14 +208,14 @@ a, button {
         transition: margin .5s;
     }
 
-    .no-touch .nav a:hover ,
-    .nav a:active ,
-    .nav a:focus {
+    .no-touch nav.nav a:hover ,
+    nav.nav a:active ,
+    nav.nav a:focus {
         height: 100px;
     }   
 
     /* Making the text follow the height animation */
-    .no-touch .nav a:hover .nav-icon + span {
+    .no-touch nav.nav a:hover .nav-icon + span {
         margin-top: 3px;
         -webkit-transition: margin .5s;
         -moz-transition: margin .5s;
@@ -225,7 +225,7 @@ a, button {
     }
 
     /* Positioning the icons and preparing for the animation*/
-    .nav i {
+    nav.nav i {
         position: relative;
         display: inline-block;
         margin: 0 auto;
@@ -246,9 +246,9 @@ a, button {
     }   
     
     /* Animate the box-shadow to create the effect */
-    .no-touch .nav a:hover i,
-    .no-touch .nav a:active i,
-    .no-touch .nav a:focus i {
+    .no-touch nav.nav a:hover i,
+    .no-touch nav.nav a:active i,
+    .no-touch nav.nav a:focus i {
         box-shadow: 0 0 0 0 rgba(255,255,255,0.2);
         -webkit-transition: box-shadow .4s ease-in-out;
         -moz-transition: box-shadow .4s ease-in-out;
@@ -262,7 +262,7 @@ a, button {
 @media (min-width: 50em) and (max-width: 61.250em) {
 
     /* Size and font adjustments to make it fit into the screen*/
-    .nav ul {
+    nav.nav ul {
         font-size: 1.2em;
     }
 
@@ -273,43 +273,43 @@ a, button {
 @media (max-width: 49.938em) {      
     
     /* Instead of adding a border, we transition the background color */
-    .no-touch .nav ul li:nth-child(6n+1) a:hover,
-    .no-touch .nav ul li:nth-child(6n+1) a:active,
-    .no-touch .nav ul li:nth-child(6n+1) a:focus {
+    .no-touch nav.nav ul li:nth-child(6n+1) a:hover,
+    .no-touch nav.nav ul li:nth-child(6n+1) a:active,
+    .no-touch nav.nav ul li:nth-child(6n+1) a:focus {
         background: rgb(227, 119, 20);
     }
 
-    .no-touch .nav li:nth-child(6n+2) a:hover,
-    .no-touch .nav li:nth-child(6n+2) a:active,
-    .no-touch .nav li:nth-child(6n+2) a:focus {
+    .no-touch nav.nav li:nth-child(6n+2) a:hover,
+    .no-touch nav.nav li:nth-child(6n+2) a:active,
+    .no-touch nav.nav li:nth-child(6n+2) a:focus {
         background: rgb(245, 160, 41);
     }
 
-    .no-touch .nav li:nth-child(6n+3) a:hover,
-    .no-touch .nav li:nth-child(6n+3) a:active,
-    .no-touch .nav li:nth-child(6n+3) a:focus {
+    .no-touch nav.nav li:nth-child(6n+3) a:hover,
+    .no-touch nav.nav li:nth-child(6n+3) a:active,
+    .no-touch nav.nav li:nth-child(6n+3) a:focus {
         background: rgb(44, 168, 219);
     }
 
-    .no-touch .nav li:nth-child(6n+4) a:hover,
-    .no-touch .nav li:nth-child(6n+4) a:active,
-    .no-touch .nav li:nth-child(6n+4) a:focus {
+    .no-touch nav.nav li:nth-child(6n+4) a:hover,
+    .no-touch nav.nav li:nth-child(6n+4) a:active,
+    .no-touch nav.nav li:nth-child(6n+4) a:focus {
         background: rgb(31, 120, 176);
     }
 
-    .no-touch .nav li:nth-child(6n+5) a:hover,
-    .no-touch .nav li:nth-child(6n+5) a:active,
-    .no-touch .nav li:nth-child(6n+5) a:focus {
+    .no-touch nav.nav li:nth-child(6n+5) a:hover,
+    .no-touch nav.nav li:nth-child(6n+5) a:active,
+    .no-touch nav.nav li:nth-child(6n+5) a:focus {
         background: rgb(39, 70, 90);
     }
 
-    .no-touch .nav li:nth-child(6n+6) a:hover,
-    .no-touch .nav li:nth-child(6n+6) a:active,
-    .no-touch .nav li:nth-child(6n+6) a:focus {
+    .no-touch nav.nav li:nth-child(6n+6) a:hover,
+    .no-touch nav.nav li:nth-child(6n+6) a:active,
+    .no-touch nav.nav li:nth-child(6n+6) a:focus {
         background: rgb(32, 54, 68);
     }
 
-    .nav ul li {
+    nav.nav ul li {
         -webkit-transition: background 0.5s;
         -moz-transition: background 0.5s;
         -o-transition: background 0.5s;
@@ -323,28 +323,28 @@ a, button {
 @media (min-width:42.5em) and (max-width: 49.938em) {
 
     /* Creating the 2 column layout using floating elements once again */
-    .nav li {
+    nav.nav li {
         display: block;
         float: left;
         width: 25%;
     }
     
     /* Adding some padding to make the elements look nicer*/
-    .nav a {
+    nav.nav a {
         height: 45px;
     }
 
     /* Displaying the icons on the left, and the text on the right side using inlin-block*/
-    .nav li span, 
-    .nav li span.nav-icon {
+    nav.nav li span, 
+    nav.nav li span.nav-icon {
         display: inline-block;
     }
 
-    .nav li span.nav-icon {
+    nav.nav li span.nav-icon {
         width: 25%;
     }
 
-    .nav li .nav-icon + span {
+    nav.nav li .nav-icon + span {
         font-size: 1em;
     }
 
@@ -355,7 +355,7 @@ a, button {
     }
 
     /* Adaptating to the icons to animate the size and border of the rounded background in a more discreet way */
-    .nav li i {
+    nav.nav li i {
         display: inline-block;
         border: 4px solid transparent;
         border-radius: 50%;
@@ -369,24 +369,24 @@ a, button {
     }
 
     /* Transition effect on the border color */
-    .no-touch .nav li:hover i,
-    .no-touch .nav li:active i,
-    .no-touch .nav li:focus i {
+    .no-touch nav.nav li:hover i,
+    .no-touch nav.nav li:active i,
+    .no-touch nav.nav li:focus i {
         border: 4px solid rgba(255,255,255,0.1);
     }
 }
 
 /* Adapting the font size and width for smaller screns*/
 @media (max-width: 42.5em) {
-    .nav li{
+    nav.nav li{
         width: 33.3333333333%;
         float: left;
     }
-    .nav li span{
+    nav.nav li span{
         text-overflow: ellipsis;
     }
 
-    .nav li .nav-icon + span {
+    nav.nav li .nav-icon + span {
         font-size: 0.9em;
     }
 }

@@ -1,0 +1,20 @@
+<div>
+  <div class="row">
+    <div class="col-md-6">
+      <input type="search" class="form-control">
+      <span class="ui-icon-search"></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <ul id="available-items" class="dragable-times">
+        <li ng-repeat="available in availableItems">{{available}}</li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <ul id="selected-items" class="dragable-times">
+        <li ng-repeat="selecteditem in selectedItems">{{selecteditem}}</li>
+      </ul>
+    </div>
+  </div>
+</div>

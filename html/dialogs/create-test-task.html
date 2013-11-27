@@ -1,4 +1,4 @@
-<div id="CreateTestTaskDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel" ng-controller="CreateNewTaskCtrl">
+<div id="CreateTaskDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel" ng-controller="CreateNewTaskCtrl">
   <div class="modal-dialog">
     <div class="modal-content">
       <form name="addTestTask" class="form-inline" role="form">
@@ -7,65 +7,87 @@
           <h4 class="modal-title" id="myModalLabel">Add New Test Task</h4>
         </div>
         <div class="modal-body">
-          <fieldset class="test-info">
-            <legend>Test Task Information</legend>
-            <div class="row">
-              <div class="col-md-4 form-group" ng-class="{'has-error': addTestTask.usedby.$error.required}">
-                <label for="usedby" class="sr-only">Used By: </label>
-                <input type="text" id="usedby" class="form-control input-sm" ng-model="usedBy" placeholder="Used By" required />
+          <ul class="nav nav-tabs" id="task-tabs">
+            <li class="active"><a href="#create-test-task" data-toggle="tab">Test Task</a></li>
+            <li class="dropdown">
+              <a href="#" id="createScriptTaskDrop" class="pull-right dropdown-toggle" data-toggle="dropdown"><b class="caret"></b></a>
+              <a class="pull-left" data-toggle="tab" href="#using-exist-script">Script Task</a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="createScriptTaskDrop">
+                <li><a href="#using-exist-script" tabindex="-1" data-toggle="tab">Using Existing Scripts</a></li>
+                <li><a href="#input-new-script" tabindex="-1" data-toggle="tab">Input New Script</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane fade active in" id="create-test-task">
+              <div class="row">
+                <div class="col-md-4 form-group" ng-class="{'has-error': addTestTask.usedby.$error.required}">
+                  <label for="usedby" class="sr-only">Used By: </label>
+                  <input type="text" id="usedby" class="form-control input-sm" ng-model="usedBy" data-need-tooltip placeholder="Used By" title="Used By" required />
+                </div>
+                <div class="col-md-4 form-group">
+                  <label for="projectname" class="sr-only">Project: </label>
+                  <select class="form-control input-sm" id="projectname" ng-model="projectName" ng-options="pname.Value as pname.Label for pname in $root.ProjectNameEnum.toEnumList()" ng-init="projectName=$root.siteSetting.projectName">
+                  </select>
+                </div>
+                <div class="col-md-4 form-group">
+                  <label for="tasktype" class="sr-only">Task Type: </label>
+                  <select class="form-control input-sm" id="tasktype" ng-model="taskType" ng-options="ttype.Value as ttype.Label for ttype in $root.TaskTypeEnum.toEnumList() | filter: taskTypeFilter" ng-init="teskType = $root.siteSetting.taskType">
+                  </select>
+                </div>
               </div>
-              <div class="col-md-4 form-group">
-                <label for="projectname" class="sr-only">Project: {{projectName}}</label>
-                <select class="form-control input-sm" id="projectname" ng-model="projectName" ng-init="projectName = projectName">
-                  <option ng-repeat="pname in $root.ProjectNameEnum.toEnumList()" value="{{pname.Value}}" title="{{pname.FullName}}">{{pname.Label}}</option>
-                </select>
+              <div class="row form-group" ng-class="{'has-error': addTestTask.svnurl.$invalid}">
+                <div class="col-md-12">
+                  <label for="svnurl" class="control-label sr-only">SVN Url: </label>
+                  <input type="text" class="form-control input-sm" id="svnurl" ng-model="svnUrl"  data-need-tooltip title="SVN Url of the testing branch" placeholder="SVN Url" required />
+                  <span class="help-block" ng-show="addTestTask.svnurl.$invalid">Invalid url format!</span>
+                </div>
               </div>
-              <div class="col-md-4 form-group">
-                <label for="tasktype" class="sr-only">Task Type: {{tasktype}}</label>
-                <select class="form-control input-sm" id="tasktype" ng-model="tasktype" ng-init="tasktype=tasktype">
-                  <option ng-repeat="ttype in $root.TaskTypeEnum.toEnumList() | filter: testTypeFilter" value="{{ttype.Value}}">{{ttype.Label}}</option>
-                </select>
+              <div class="row">
+                <div class="col-md-6 form-group" ng-class="{'has-error': addTestTask.revision.$invalid}">
+                  <label for="revision" class="control-label sr-only">Revision: </label>
+                  <input type="text" class="form-control input-sm" id="revision" ng-model="revision" ng-pattern='/HEAD|[r]\d{5,8}/' placeholder="Revision"  data-need-tooltip title="revision number of the SVN trunk or branch" required />
+                  <span class="help-block" ng-show="addTestTask.lfsoRevision.$invalid">Please check revision number, it should be "HEAD" or "r1325" or "23481"</span>
+                </div>
+                <div class="col-md-6 form-group" ng-class="{'has-error': addTestTask.lfsoRevision.$invalid}">
+                  <label for="lfsorevision" class="control-label sr-only">LFSO Rev: </label>
+                  <input type="text" class="form-control input-sm" id="lfsorevision" ng-model="lfsoRevision" ng-pattern='/HEAD|[r]\d{5,8}/i' placeholder="LFSO Revision"  data-need-tooltip title="revision number of the LFSO used in the build and/or test" data-tooltip-pos="right" required />
+                  <span class="help-block" ng-show="addTestTask.lfsoRevision.$invalid">Please check revision number, it should be "HEAD" or "r1325" or "23481"</span>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="args" class="sr-only">Nunit Args: </label>
+                  <input type="text" class="form-control input-sm" id="args" ng-model="args" placeholder="Nunit Args"  data-need-tooltip title="Arguments to run the nunit tests"/>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="message" class="sr-only">Message: </label>
+                  <textarea id="message" class="form-control input-sm" ng-model="message" rows="3" placeholder="Message"></textarea>
+                </div>
               </div>
             </div>
-            <div class="row form-group" ng-class="{'has-error': addTestTask.svnurl.$invalid}">
-              <div class="col-md-12">
-                <label for="svnurl" class="sr-only">SVN Url: </label>
-                <input type="text" class="form-control input-sm" id="svnurl" ng-model="svnUrl" placeholder="SVN Url of the testing branch" required />
-                <span class="help-block" ng-show="addTestTask.svnurl.$invalid">Invalid url format!</span>
+            <div class="tab-pane fade" id="using-exist-script">
+              <dragable-Selector ng-model="selectedScripts"></dragable-Selector>
             </div>
-            <div class="row">
-              <label for="revision" class="col-md-2 control-label">Revision: </label>
-              <div class="col-md-4 form-group" ng-class="{'has-error': addTestTask.revision.$invalid}">
-                <input type="text" class="form-control input-sm" id="revision" ng-model="revision" ng-pattern='/HEAD|[r]\d{5,8}/' placeholder="Revision" required />
-                <span class="help-block" ng-show="addTestTask.lfsoRevision.$invalid">Please check revision number, it should be "HEAD" or "r1325" or "23481"</span>
-              </div>
-              <label for="lfsorevision" class="col-md-2 control-label">LFSO Rev: </label>
-              <div class="col-md-4 form-group" ng-class="{'has-error': addTestTask.lfsoRevision.$invalid}">
-                <input type="text" class="form-control input-sm" id="lfsorevision" ng-model="lfsoRevision" ng-pattern='/HEAD|[r]\d{5,8}/i' placeholder="LFSO Revision" required />
-                <span class="help-block" ng-show="addTestTask.lfsoRevision.$invalid">Please check revision number, it should be "HEAD" or "r1325" or "23481"</span>
-              </div>
+            <div class="tab-pane fade" id="input-new-script">
+              this is input script
             </div>
-            <div class="row form-group">
-              <div class="col-md-12">
-                <label for="args" class="sr-only">Nunit Args: </label>
-                <input type="text" class="form-control input-sm" id="args" ng-model="args" placeholder="Nunit Args"/>
-              </div>
-            </div>
-            <div class="row form-group">
-              <div class="col-md-12">
-                <label for="message" class="sr-only">Message: </label>
-                <textarea id="message" class="form-control input-sm" ng-model="message" rows="3" placeholder="Message" > </textarea>
-              </div>
-            </div>
-          </fieldset>
+          </div>
           <fieldset class="node-selection">
             <legend>Test Node to Run the Task</legend>
             <test-node-selector data-select-all="false" data-run-at-any="true"></test-node-selector>
           </fieldset>
+          <fieldset class="node-selection">
+            <legend>Send Email After Task Finised</legend>
+            <email-list ng-model="emailList"></email-list>
+          </fieldset>
         </div>
         <div class="modal-footer">
-          <button class="btn" ng-click='save()' id="FinishBtn" ng-disabled="addTestTask.$invalid">OK</button>
-          <button class="btn" data-dismiss="modal" aria-hidden="true" ng-click='cancel()'>Cancel</button>
+          <button class="btn" type="submit" ng-click='save()' id="FinishBtn" ng-disabled="addTestTask.$invalid">OK</button>
+          <button class="btn" type="reset" ng-click='reset()' id="ResetBtn" >Reset</button>
+          <button class="btn" type="button" data-dismiss="modal" aria-hidden="true" ng-click='cancel()'>Cancel</button>
         </div>
       </form>
     </div>

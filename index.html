@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/jquery-ui-1.10.3.custom.css">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/bootstrap-switch.css">
   <link rel="stylesheet" href="css/jquery-layout.css">
   <link rel="stylesheet" href="css/jquery.jnotify.css">
   <link rel="stylesheet" href="css/component.css">
@@ -82,9 +83,10 @@
           <div class="btn-group btn-group-xs">
             <button id="LockMulti" class="btn btn-default" ng-click="lockMulti()">Lock</button>
             <button id="ReleaseMulti" class="btn btn-default" ng-click="realseMulti()">UnLock</button>
-            <button id="CreateTestTask" class="btn btn-default" ng-click="createTestTask()">New TestTask</button>
+            <button id="CreateTask" class="btn btn-default" ng-click="createTask()">New Task</button>
             <button id="ResetId" class="btn btn-default" title="Reset the task id to 1" ng-click="resetId()">Reset Id</button>
             <button id="ReloadStatus" class="btn btn-default" title="Reload TestNode status from config file" ng-click="reloadStatus()">Reload</button>
+            <button id="SiteSetting" class="btn btn-default" title="Modify the default site setting for the current user" ng-click="setSite()">Setting</button>
           </div>
           <tnc-search-box></tnc-search-box>
         </div>

@@ -107,6 +107,15 @@ define(['app/util'], function () {
         for(var key in TaskTypeEnum)
             $.extend(TaskTypeEnum[key], EnumItem);
         $.extend(TaskTypeEnum, EnumObj);
+        TaskTypeEnum.toEnumList = function() {
+            var list = [];
+            for (var key in this) {
+                if (typeof this[key] !== "function" && this[key].Value > 0) {
+                    list.push(this[key]);
+                }
+            }
+            return list;
+        };
 
         var TestNode = function(name, status){
             this.NodeName = name;

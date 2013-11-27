@@ -1,0 +1,20 @@
+<div class="email-list">
+    <div class="row">
+        <div class="col-md-4" ng-repeat="email in emailList">
+            <input type="email" ng-model="email" name="{{'emailInput' + $index}}" class="form-control">
+            <span class="remove-email" aria-hidden="true" ng-click="emailList.splice($index, 1)">&times;</span >
+        </div>
+    </div>
+    <hr />
+    <div class="row form-group">
+        <label for="new-email" class="sr-only">New Email:</label>
+        <div class="col-md-11">
+            <input type="text" class="form-control input-sm" id='new-email' ng-keypress="addNewEmail($event)" ng-keyup="addNewEmail($event)" data-need-tooltip title="Add new Emails" ng-model="newEmail">
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-default btn-sm" type="button" ng-click="addNewEmailClick()" ng-disabled="newEmail.length===0">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -10,9 +10,11 @@ define(['jquery', 'angular', 'app/TestNodeController'],
                 $scope.realseMulti = function() {};
                 $scope.resetId = function() {};
                 $scope.reloadStatus = function() {};
-                $scope.createTestTask = function() {
-                    console.log('createTestTask');
-                    $dialogService.show('#CreateTestTaskDlg', 'create-test-task');
+                $scope.createTask = function() {
+                    $dialogService.show('#CreateTaskDlg', 'create-test-task');
+                };
+                $scope.setSite = function() {
+                    $dialogService.show('#SiteSettingDlg', 'site-setting');
                 };
                 $scope.init();
             }

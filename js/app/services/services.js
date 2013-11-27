@@ -1,8 +1,16 @@
 define(['app/TestNodeController'], function(TestNodeController) {
     'use strict';
-    TestNodeController.run(['$rootScope',
-        function($rootScope) {
+    TestNodeController.run(['$rootScope', '$storage',
+        function($rootScope, $storage) {
             $.extend($rootScope, TNC);
+            var defaultSiteSetting = {
+                projectName: 0, /*LFFTS*/
+                taskType: 2, /*build and test*/
+                emailList: ["ting.sang@laserfiche.com"]
+            };
+            $storage.set('name', "sant");
+            $rootScope.siteSetting = $.extend({}, defaultSiteSetting, $storage.get('siteSetting'));
+            $rootScope.scriptList = ["script A","Script B","script C","Script D","script E","Script F","script H","Script I"];
         }
     ]);
     angular.module('TestNodeController.services').factory('CommonObject', [
@@ -113,7 +121,7 @@ define(['app/TestNodeController'], function(TestNodeController) {
             }];
             this.PendingTasks = [];
             this.FinishedTasks = [];
-            this.scriptList = [];
+            this.scriptList = ["script A","Script B"];
         }
     ]);
 });

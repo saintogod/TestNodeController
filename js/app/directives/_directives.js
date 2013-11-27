@@ -1,5 +1,5 @@
 define(['angular',
-    'app/directives/SearchBox',
+    'app/directives/Utils',
     'app/directives/TestNodeItem',
     'app/directives/TestNodeSelector'],
     function(angular) {

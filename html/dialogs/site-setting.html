@@ -1,0 +1,38 @@
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="SiteSettingDlg" ng-controller="SiteSettingCtrl" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-inline" name="siteSettingForm" role="form">
+        <div class="modal-header">
+          <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+          <h4 class="modal-title" id="myModalLabel">Modify Site Default Setting</h4>
+        </div>
+        <div class="modal-body">
+          <fieldset class="test-info">
+            <legend>Default Task Option</legend>
+            <div class="row form-group">
+              <label class="form-label col-md-4" for="defaultProject">Default Project: </label>
+              <div class="col-md-8">
+                <select class="form-control input-sm" name="defaultProject" ng-model="settings.projectName" ng-options="pname.Value as pname.Label for pname in $root.ProjectNameEnum.toEnumList()"/>
+              </div>
+            </div>
+            <div class="row form-group">
+              <label class="form-label col-md-4" for="defaultTaskType">Default TaskType: </label>
+              <div class="col-md-8">
+                <select class="form-control input-sm" name="defaultTaskType" ng-model="settings.taskType" ng-options="ttype.Value as ttype.Label for ttype in $root.TaskTypeEnum.toEnumList()"/>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="node-selection">
+            <legend>Default Email Accounts</legend>
+            <email-list ng-model="settings.emailList"/>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="FinishBtn" ng-click="save()" ng-disabled="siteSettingForm.$invalid" type="submit">OK</button>
+          <button class="btn" id="ResetBtn" ng-click="reset()" type="reset">Reset</button>
+          <button aria-hidden="true" class="btn" data-dismiss="modal" ng-click="cancel()" type="button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

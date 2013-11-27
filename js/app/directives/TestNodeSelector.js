@@ -1,4 +1,4 @@
-define(['app/TestNodeController', 'jslimscroll'],
+define(['app/TestNodeController', 'app/directives/Widgets', 'jslimscroll','btswitch'],
     function(TestNodeController) {
         'use strict';
         angular.module('TestNodeController.directives')
@@ -17,36 +17,41 @@ define(['app/TestNodeController', 'jslimscroll'],
                             });
                         };
                     },
-                    link: function(scope, element, attrs) {
-                        scope.selectAll = eval(attrs.selectAll);
-                        scope.runAtAny = eval(attrs.runAtAny);
-                        scope.init();
+                    link: function($scope, element, attrs) {
+                        $scope.selectAll = eval(attrs.selectAll);
+                        $scope.runAtAny = eval(attrs.runAtAny);
+                        $scope.init();
                         var selAllEle = element.find('#select-all');
-                        scope.$watch(function(){
+                        $scope.$watch(function(){
                                 var sum = 0;
-                                $.each(scope.testNodes, function(index, item){
+                                $.each($scope.testNodes, function(index, item){
                                     sum += item.selected? 1: 0;
                                 });
                                 return sum;
                             }, function(newVal){
                                 if(newVal === 0 ) {
-                                    scope.selectAll = false;
+                                    $scope.selectAll = false;
                                     selAllEle.prop('indeterminate', false);
-                                } else if(newVal === scope.testNodes.length) {
-                                    scope.selectAll = true;
+                                } else if(newVal === $scope.testNodes.length) {
+                                    $scope.selectAll = true;
                                     selAllEle.prop('indeterminate', false);
                                 } else {
-                                    scope.selectAll = false;
+                                    $scope.selectAll = false;
                                     selAllEle.prop('indeterminate', true);
                                 }
                             }, true);
                         selAllEle.change(function(){
-                            $.each(scope.testNodes, function(index, item){
-                                item.selected = !scope.selectAll;
+                            $.each($scope.testNodes, function(index, item){
+                                item.selected = !$scope.selectAll;
                             });
-                            scope.$apply();
+                            $scope.$apply();
                         });
-                        $('.need-tooltip').tooltip();
+                        $('.make-switch').bootstrapSwitch();
+                        $('.make-switch').bootstrapSwitch('setState', $scope.runAtAny);
+                        $('.make-switch').on('switch-change', function(e, data){
+                            $scope.runAtAny = data.value;
+                            $scope.$apply();
+                        });
                     }
                 };
             });

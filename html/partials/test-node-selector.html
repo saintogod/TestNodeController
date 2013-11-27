@@ -1,8 +1,11 @@
 <div id="testnodeselector">
     <div class="row">
-        <span>
-            <input type="checkbox" ng-model="runAtAny" class="checkbox">Run at any idle test node.
-        </span>
+        <div class="form-group">
+            <label class="control-label" for="runAtAny">Run at any idle test node</label>
+            <div class="make-switch switch-small" data-on="Yes" data-off="No" data-animated="true">
+                <input id="runAtAny" type="checkbox" ng-model="runAtAny" checked>
+            </div>
+        </div>
     </div>
     <div ng-show="!runAtAny">
         <div class="row">
@@ -18,12 +21,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 need-tooltip">
+            <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">
                         <input type="checkbox" ng-model="enableExtraNodes">
                     </span>
-                <input type="text" class="form-control show-tooltip" ng-model="extraNodes" ng-disabled="!enableExtraNodes" data-toggle="tooltip" title="Split multi nodes by comma(,) or semicolon(;)">
+                <input type="text" class="form-control" data-need-tooltip ng-model="extraNodes" ng-disabled="!enableExtraNodes" data-toggle="tooltip" title="Split multi nodes by comma(,) or semicolon(;)" placeholder="Extra machines">
             </div>
         </div>
     </div>

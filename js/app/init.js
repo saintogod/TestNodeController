@@ -1,4 +1,4 @@
-define(['app/TestNodeController', 'app/services/services', 'app/controllers/_controllers', 'app/directives/_directives', 'app/routes/routes', 'jlayout', 'jqueryui'],
+define(['app/TestNodeController', 'app/services/services', 'app/controllers/_controllers', 'app/directives/_directives', 'app/routes/routes', 'jlayout'],
     function(TestNodeController) {
         'use strict';
         $('#container').layout({

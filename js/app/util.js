@@ -451,7 +451,7 @@ define(['jquery'], function($) {
 
         var arguments2Array = function(args, shift) {
             var o = [];
-            for (l = args.length, x = (shift || 0) - 1; x < l; x++) {
+            for (var l = args.length, x = (shift || 0) - 1; x < l; x++) {
                 o.push(args[x]);
             }
             return o;

@@ -4,9 +4,11 @@ require.config({
         jquery      : 'lib/jquery/jquery-1.10.2',
         bootstrap   : 'lib/bootstrap/bootstrap',
         angular     : 'lib/angular/angular',
-        angularRoute: 'lib/angular/angular-route',
-        angularCookies: 'lib/angular/angular-cookies',
+        ngRoute     : 'lib/angular/angular-route',
+        ngCookies   : 'lib/angular/angular-cookies',
         localStorage: 'lib/angular/plugins/angular.LocalStorage',
+        ngGrid      : 'lib/angular/plugins/ng-grid-2.0.7',
+        ngResource  : 'lib/angular/angular-resource',
         modernizr   : 'lib/modernizr/modernizr.custom',
         jqueryui    : 'lib/jquery/plugins/jquery-ui/jquery-ui-1.10.3.custom',
         multisortable: 'lib/jquery/plugins/jquery-multisortable/jquery.multisortable',
@@ -28,9 +30,11 @@ require.config({
         "jlayout"       : { deps: ["jquery", "jqueryui"], exports: "jlayout" },
         "jminimalect"   : { deps: ["jquery"] },
         "jslimscroll"   : { deps: ["jquery"] },
-        "angularRoute"  : { deps: ["angular"] },
-        "angularCookies": { deps: ["angular"] },
-        "localStorage"  : { deps: ["angular", "angularCookies"] }
+        "ngResource"    : { deps: ["angular"] },
+        "ngRoute"       : { deps: ["angular"] },
+        "ngCookies"     : { deps: ["angular"] },
+        "localStorage"  : { deps: ["ngCookies"] },
+        "ngGrid"        : { deps: ["jlayout", "ngResource"]}
     },
     priority: [
         "jquery",
@@ -40,18 +44,13 @@ require.config({
 
 window.name = "NG_DEFER_BOOTSTRAP!";
 
-require( [
-    'jquery',
-    'angular',
-    'app/init',
-    'modernizr',
-    'bootstrap'
-], function($, angular, init, modernizr) {
-    'use strict';
-    var $html = angular.element(document.getElementsByTagName('html')[0]);
+require(['jquery', 'angular', 'app/init', 'modernizr', 'bootstrap'],
+    function($, angular, init, modernizr) {
+        'use strict';
+        var $html = angular.element(document.getElementsByTagName('html')[0]);
 
-    angular.element().ready(function() {
-        $html.addClass('ng-app');
-        angular.bootstrap($html, [init['name']]);
+        angular.element().ready(function() {
+            $html.addClass('ng-app');
+            angular.bootstrap($html, [init['name']]);
+        });
     });
-});

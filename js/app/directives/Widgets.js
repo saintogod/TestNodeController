@@ -16,6 +16,7 @@ define(['app/TestNodeController', 'jqueryui', 'multisortable', 'jslimscroll'],
                 }
             }).directive('dragableSelector', ['$rootScope', function($rootScope){
                 return {
+                    require: "ngModel",
                     scope: {
                         'selectedItems': '=ngModel'
                     }, // {} = isolate, true = child, false/undefined = no change
@@ -23,17 +24,18 @@ define(['app/TestNodeController', 'jqueryui', 'multisortable', 'jslimscroll'],
                     template: '<div id="sortable-script-list">'+
                                   '<div class="row">'+
                                     '<div class="col-md-6">'+
-                                      '<input type="search" class="form-control" id="item-filter">'+
+                                      '<input type="search" class="form-control" id="item-filter" ng-model="itemFilter">'+
                                       '<span class="ui-icon-search"></span>'+
                                     '</div>'+
                                     '<div class="col-md-6" id="dragging-item-holder">'+
+                                      '<span class="help-block" ng-show="selectedItems==undefined || selectedItems.size() === 0">Must select at least one script</span>'+
                                     '</div>'+
                                   '</div>'+
                                   '<div class="row">'+
                                     '<div class="col-md-6">'+
                                         '<div class="dragable-container">'+
                                           '<ul id="available-items" class="list-group">'+
-                                            '<li ng-repeat="available in availableItems" class="list-group-item dragable-item">{{available}}</li>'+
+                                            '<li ng-repeat="available in availableItems | filter: itemFilter" class="list-group-item dragable-item">{{available}}</li>'+
                                           '</ul>'+
                                         '</div>'+
                                     '</div>'+
@@ -55,9 +57,27 @@ define(['app/TestNodeController', 'jqueryui', 'multisortable', 'jslimscroll'],
                         };
                         $scope.init();
                     },
-                    link: function($scope, element, attrs) {
+                    link: function($scope, element, attrs, ctrl) {
                         $scope.repeatable = attrs.repeatable || false;
-
+                        ctrl.$parsers.unshift(function(value) {
+                            // test and set the validity after update.
+                            var valid = value && value.size() > 0;
+                            ctrl.$setValidity('dragableSelector', valid);
+                            
+                            // if it's valid, return the value to the model, 
+                            // otherwise return undefined.
+                            return valid ? value : undefined;
+                        });
+                        
+                        // add a formatter that will process each time the value 
+                        // is updated on the DOM element.
+                        ctrl.$formatters.unshift(function(value) {
+                            // validate.
+                            ctrl.$setValidity('dragableSelector', value && value.size() > 0);
+                            
+                            // return the value or nothing will be written to the DOM.
+                            return value;
+                        });
                         $('.dragable-container').slimScroll({
                             position: 'right',
                             height: '200px',
@@ -67,7 +87,9 @@ define(['app/TestNodeController', 'jqueryui', 'multisortable', 'jslimscroll'],
                             opacity: 0.6,
                             stop: function(){
                                 $scope.selectedItems = $.map(element.find('#selected-items').find("li"), function(item, index){ return $(item).text(); });
-                                $scope.$apply();
+                                $scope.$apply(function() {
+                                    ctrl.$setViewValue($scope.selectedItems);
+                                });
                             }
                         });
 

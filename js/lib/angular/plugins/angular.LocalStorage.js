@@ -1,4 +1,4 @@
-define(['angular', 'angularCookies'],
+define(['angular', 'ngCookies'],
     function(angular) {
     angular.module('localStorage', ['ngCookies']).factory('$storage', ['$parse', '$cookieStore', '$window', '$log',
         function($parse, $cookieStore, $window, $log) {

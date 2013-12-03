@@ -1,4 +1,4 @@
-define(['app/TestNodeController'], function(TestNodeController) {
+define(['app/TestNodeController', 'jnotify'], function(TestNodeController) {
     'use strict';
     TestNodeController.run(['$rootScope', '$storage',
         function($rootScope, $storage) {
@@ -66,6 +66,29 @@ define(['app/TestNodeController'], function(TestNodeController) {
             };
             return dialogService;
 
+        }
+    ]).service('notify', [
+        function(){
+            var options = {
+                delay: 8000,
+                fadeSpeed: 600,
+                sticky: true,
+                showClose: true,
+                closeLabel: "&times;" 
+            };
+            this.alert = function(msg){
+                options.type = "info";
+                $.jnotify(msg, options);
+            }, this.error = function(msg) {
+                options.type = "error";
+                $.jnotify(msg, options);
+            }, this.success = function(msg) {
+                options.type = "success";
+                $.jnotify(msg, options);
+            }, this.warning = function(msg) {
+                options.type = "warning";
+                $.jnotify(msg, options);
+            };
         }
     ]).service('TNCService', ['$rootScope',
         function($rootScope) {

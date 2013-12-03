@@ -402,3 +402,112 @@ nav.nav li:nth-child(6n+6) {
         width: 100% !important;
     }
 }
+
+
+
+div.jnotify-container {
+    position: fixed; 
+    top: 55; 
+    right: 0; 
+    width: 300px; 
+    z-index: 100000;
+    
+    /* set maximum number of notes to show */
+    max-height: 270px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+div.jnotify-container div.jnotify-notification {
+    position: relative; 
+    margin-bottom: 5px;
+}
+
+div.jnotify-container div.jnotify-notification div.jnotify-background {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: #4c4c4c; 
+    filter: alpha(opacity=90); 
+    -moz-opacity: 0.90; 
+    opacity: 0.90; 
+    z-index: 1; 
+
+    /* round the corners */
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+div.jnotify-container div.jnotify-notification a.jnotify-close,
+div.jnotify-container div.jnotify-notification a.jnotify-close:link,
+div.jnotify-container div.jnotify-notification a.jnotify-close:visited,
+div.jnotify-container div.jnotify-notification a.jnotify-close:focus{
+    position: absolute;
+    top: 2px;
+    right: 1px;
+    padding: 0 5px;
+    font: 16px Verdana,Arial,Helvetica,sans-serif;
+    line-height: 1em;
+    color: #F76F45;
+    opacity: 0.6;
+    text-decoration: none;
+    z-index: 3;
+    cursor: pointer;
+}
+div.jnotify-container div.jnotify-notification a.jnotify-close:hover{
+    color: #FA2C45;
+    opacity: 1;
+}
+div.jnotify-container div.jnotify-notification div.jnotify-message {
+    position: relative; 
+    z-index: 2; 
+    padding: 20px;
+    text-align: left;
+    color: #fff;
+    font: bold 18px Verdana,Arial,Helvetica,sans-serif;
+    line-height: 1.2em; 
+}
+
+div.jnotify-container div.jnotify-notification div.jnotify-message * {
+    font: inherit;
+    font-size: 16px;
+}
+
+/* notification type == "error" */
+div.jnotify-container div.jnotify-notification-error div.jnotify-background {
+    background-color: #e4abb9; 
+}
+
+div.jnotify-container div.jnotify-notification-error div.jnotify-message {
+    color: #a72947 !important;
+}
+
+/* notification type == "warning" */
+div.jnotify-container div.jnotify-notification-warning div.jnotify-background {
+    background-color: #fff7d1 !important; 
+}
+
+div.jnotify-container div.jnotify-notification-warning div.jnotify-message {
+    color: #c2a928 !important;
+}
+
+/* notification type == "success" */
+div.jnotify-container div.jnotify-notification-success div.jnotify-background {
+    background-color: #90EE90 !important; 
+}
+
+div.jnotify-container div.jnotify-notification-success div.jnotify-message {
+    color: #006400 !important;
+}
+
+/* notification type == "info" */
+div.jnotify-container div.jnotify-notification-info div.jnotify-background {
+    background-color: #57B7E2 !important; 
+}
+
+div.jnotify-container div.jnotify-notification-info div.jnotify-message {
+    color: #FFF !important;
+}

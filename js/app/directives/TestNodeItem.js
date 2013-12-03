@@ -22,5 +22,29 @@ define(['jquery', 'angular', 'app/TestNodeController', 'jslimscroll'],
                         element.find('#Messages').slimScroll({height: "68px"});
                     }
                 };
+            }).directive('pendingTasks', function() {
+                return {
+                    restrict: 'EA',
+                    scope: true,
+                    replace: true,
+                    transclude: false,
+                    template: '<div id="pending-tasks" class="gridStyle" ng-grid="gridOption"></div>',
+                    controller: "PendingTasksCtrl",
+                    link: function(scope, element, attrs) {
+
+                    }
+                };
+            }).directive('finishedTasks', function() {
+                return {
+                    restrict: 'EA',
+                    scope: true,
+                    replace: true,
+                    transclude: false,
+                    template: '<div id="finished-tasks" class="gridStyle" ng-grid="gridOption"></div>',
+                    controller:  "FinishedTasksCtrl",
+                    link: function(scope, element, attrs) {
+                       
+                    }
+                };
             });
     });

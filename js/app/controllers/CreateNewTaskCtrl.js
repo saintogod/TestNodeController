@@ -4,21 +4,34 @@ define(['app/TestNodeController', 'app/services/services', 'app/directives/TestN
 
         angular.module('TestNodeController.controllers').controller('CreateNewTaskCtrl', ['$scope', '$rootScope', '$dialogService', 'TNCService', 'notify', 
             function($scope, $rootScope, $dialogService, TNCService, notify) {
-                $scope.usedby = "";
-                $scope.projectName = '2';
-                $scope.taskType = 2;
-                $scope.svnUrl = "";
-                $scope.revision = "HEAD";
-                $scope.lfsoRevision = "HEAD";
-                $scope.args = "";
-                $scope.message = "";
-                $scope.emailList = [];
-
-                var scriptContents = [];
+                $scope.Usedby = "";
+                $scope.ProjectName = 2;
+                $scope.TaskType = 2;
+                $scope.SvnUrl = "";
+                $scope.Revision = "HEAD";
+                $scope.LfsoRevision = "HEAD";
+                $scope.Args = "";
+                $scope.Message = "";
+                $scope.EmailList = [];
+                $scope.SelectedTestNodes =[];
+                
                 $scope.taskPane = "create-test-task";
                 $scope.init = function() {
-                    if($scope.$context != undefined) {
-                        angular.extend($scope, $scope.$context);
+                    if($scope.$context) {
+                        $scope.Usedby = $scope.$context.Usedby || "";
+                        $scope.ProjectName = $scope.$context.ProjectName || 2;
+                        $scope.TaskType = $scope.$context.TaskType || 2;
+                        $scope.SvnUrl = $scope.$context.SvnUrl || "";
+                        $scope.Revision = $scope.$context.Revision || "HEAD";
+                        $scope.LfsoRevision = $scope.$context.LfsoRevision || "HEAD";
+                        $scope.Args = $scope.$context.Args || "";
+                        $scope.Message = $scope.$context.Message || "";
+                        $scope.EmailList = $scope.$context.EmailList || [];
+
+                        /*$.each($scope.$context, function(key, value){
+                            $scope[key] = value;
+                        });
+                        setTimeout(function() {$scope.$apply();}, 1);*/
                     }
                     $('a[data-toggle="tab"]').click(function (e) {
                         e.preventDefault();
@@ -35,29 +48,35 @@ define(['app/TestNodeController', 'app/services/services', 'app/directives/TestN
                     var method = "";
                     switch($scope.taskPane){
                         case "create-test-task":
-                            task.usedby = $scope.usedby;
-                            task.projectName = $scope.projectName;
-                            task.taskType = $scope.taskType;
-                            task.svnUrl = $scope.svnUrl;
-                            task.revision = $scope.revision;
-                            task.lfsoRevision = $scope.lfsoRevision;
-                            task.args = $scope.args;
-                            task.message = $scope.message;
-                            task.emailList = $scope.emailList;
+                            task.Usedby = $scope.Usedby;
+                            task.ProjectName = $scope.ProjectName;
+                            task.TaskType = $scope.TaskType;
+                            task.SvnUrl = $scope.SvnUrl;
+                            task.Revision = $scope.Revision;
+                            task.LfsoRevision = $scope.LfsoRevision;
+                            task.Args = $scope.Args;
+                            task.Message = $scope.Message;
+                            task.EmailList = $scope.EmailList;
                             break;
                         case "using-exist-script":
-                            task.scriptType = $scope.scriptType;
-                            task.scripts = $scope.selectedScripts;
+                            task.ScriptType = $scope.ScriptType;
+                            task.Scripts = $scope.SelectedScripts;
                             break;
                         case "input-new-script":
-                            task.scriptType = $scope.scriptType;
-                            task.scriptContent = $scope.scriptContent;
+                            task.ScriptType = $scope.ScriptType;
+                            task.ScriptContent = $scope.ScriptContent;
                             break;
                         default:
                             return;
                     }
+                    task.SelectedTestNodes = $scope.SelectedTestNodes;
                     //http
                     console.log(task);
+                    var success = function(data){
+                        $rootScope.$broadcast('updatePendingTasks', data);
+                    }, fail = function(data){
+
+                    };
                     notify.alert("success add the task");
                     $dialogService.hide('#CreateTaskDlg');
                 };
@@ -67,13 +86,14 @@ define(['app/TestNodeController', 'app/services/services', 'app/directives/TestN
                 $scope.reset = function() {
 
                 };
-                $scope.$watch('scriptType', function(newVal, oldVal) {
-                    scriptContents[oldVal] = $scope.scriptContent;
-                    $scope.scriptContent = scriptContents[newVal] || "";
+                var scriptContents = [];
+                $scope.$watch('ScriptType', function(newVal, oldVal) {
+                    scriptContents[oldVal] = $scope.ScriptContent;
+                    $scope.ScriptContent = scriptContents[newVal] || "";
                 });
-                $scope.$watch('svnUrl', function(newVal, oldVal) {
+                $scope.$watch('SvnUrl', function(newVal, oldVal) {
                     if(newVal)
-                        $scope.svnUrl = newVal.toLowerCase().replace(/'|"/, '').replace(/(%20)?\s+/g, '%20');
+                        $scope.SvnUrl = newVal.toLowerCase().replace(/'|"/, '').replace(/(%20)?\s+/g, '%20');
                 });
             }
         ]);

@@ -47,10 +47,6 @@ define(['app/util'], function () {
          */
         var NodeStatusEnum = {
             Offline:    { Value: -2, Label: "Off-line",     Description: "This node is currently off-line, please check networks." },
-            /**
-             * When the test node can't used to run the auto test or script, as the finalbuilder is running or uninstall in the node.
-             * @type {Object}
-             */
             Unavailable:{ Value: -1, Label: "Unavailable",  Description: "Can't start FinalBuilder on this node, please make sure FinalBuilder had been installed on this node, and the FinalBuilder is not running currently." },
             Idle:       { Value:  0, Label: "Idle",         Description: "You can use this node now!" },
             Locked:     { Value:  1, Label: "Locked",       Description: "This node is locked by some one manually, not locked by task." },
@@ -143,20 +139,21 @@ define(['app/util'], function () {
             }
         };
 
-        var TestTask = function(nodeName, userName, status, projectName, taskType, svnUrl, testArgs, revision, lfsoRevision, startTime, finishTime, archived, messages){
+        var TestTask = function(nodeName, userName, status, projectName, taskType, svnUrl, testArgs, revision, lfsoRevision, startTime, finishTime, archived, logs, messages){
             this.NodeName = nodeName;
             this.UserName = userName;
             this.Status = TaskStatusEnum.getEnumItem(status);
             this.ProjectName = ProjectNameEnum.getEnumItem(projectName);;
             this.TaskType = TaskTypeEnum.getEnumItem(taskType);
             this.SvnUrl = svnUrl;
-            this.TestArgs = testArgs;
-            this.Revision = revision;
-            this.LfsoRevision = lfsoRevision;
+            this.TestArgs = testArgs || "";
+            this.Revision = revision || "HEAD";
+            this.LfsoRevision = lfsoRevision || "HEAD";
             this.StartTime = startTime;
             this.FinishTime = finishTime;
-            this.Archived = archived;
-            this.Messages = messages;
+            this.Archived = archived || false;
+            this.Logs = logs || {};
+            this.Messages = messages || "";
         };
         TestTask.fromeJSON = function(str) {
             var tt = $.evalJSON(str);
@@ -164,9 +161,9 @@ define(['app/util'], function () {
             return tt;
         };
         TestTask.cloneFrom = function(tt) {
-            if(typeof tt == "undefined" || tt.length == 0)
+            if(typeof tt == "undefined" || tt.length === 0)
                 return new TestTask();
-            var testTask = new TestTask(tt.NodeName, tt.UserName, tt.Status, tt.ProjectName, tt.TaskType, tt.SvnUrl, tt.TestArgs, tt.Revision, tt.LfsoRevision, tt.StartTime, tt.FinishTime, tt.Archived, tt.Messages);
+            var testTask = new TestTask(tt.NodeName, tt.UserName, tt.Status, tt.ProjectName, tt.TaskType, tt.SvnUrl, tt.TestArgs, tt.Revision, tt.LfsoRevision, tt.StartTime, tt.FinishTime, tt.Archived, tt.Logs, tt.Messages);
             testTask.translate();
             return testTask;
         };

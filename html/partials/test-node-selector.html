@@ -16,7 +16,7 @@
             </div>
             <div class="form-group col-md-3" ng-repeat="testnode in testNodes">
                 <span>
-                    <input type="checkbox" ng-model="testnode.selected" class="checkbox" />{{testnode.name}}
+                    <input type="checkbox" ng-model="testnode.selected" class="checkbox" ng-click="updateSelectedNodes()"/>{{testnode.name}}
                 </span>
             </div>
         </div>
@@ -26,7 +26,8 @@
                     <span class="input-group-addon">
                         <input type="checkbox" ng-model="enableExtraNodes">
                     </span>
-                <input type="text" class="form-control" data-need-tooltip ng-model="extraNodes" ng-disabled="!enableExtraNodes" data-toggle="tooltip" title="Split multi nodes by comma(,) or semicolon(;)" placeholder="Extra machines">
+                    <input type="text" class="form-control" data-need-tooltip ng-model="extraNodes" ng-disabled="!enableExtraNodes" data-toggle="tooltip" title="Split multi nodes by comma(,) or semicolon(;)" placeholder="Extra machines" ng-change="updateSelectedNodes()">
+                </div>
             </div>
         </div>
     </div>

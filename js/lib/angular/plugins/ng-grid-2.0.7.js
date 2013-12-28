@@ -3087,11 +3087,11 @@ define(['jquery', 'app/util'], function($){
                                         template = $.format('<button type="button" title="{0}" class="btn btn-default" ng-click="{2}()" ng-disabled="{3}()">{1}</button>',
                                             value.title, value.label, ngClick, ngDisabled);
                                     $scope[ngDisabled] = function() {
-                                        return value.disabled($scope.$parent);
+                                        return value.disabled($scope);
                                     };
                                     $scope[ngClick] = function(e) {
                                         if (!$(e).closest('button').hasClass('Disabled'))
-                                            value.click($scope.$parent);
+                                            value.click($scope);
                                     };
                                     $($compile(template)($scope)).prependTo($('.ngToolbar', iElement));
                                 });
@@ -3576,23 +3576,18 @@ define(['jquery', 'app/util'], function($){
             );
 
             $templateCache.put("footerTemplate.html",
-                "<div ng-show=\"showFooter\" class=\"ngFooterPanel\" ng-class=\"{'ui-widget-content': jqueryUITheme, 'ui-corner-bottom': jqueryUITheme}\" ng-style=\"footerStyle()\">" +
-                "    <div class=\"ngTotalSelectContainer\" >" +
-                "        <div class=\"ngFooterTotalItems\" ng-class=\"{'ngNoMultiSelect': !multiSelect}\" >" +
-                "            <span class=\"ngLabel\">{{i18n.ngTotalItemsLabel}} {{maxRows()}}</span><span ng-show=\"filterText.length > 0\" class=\"ngLabel\">({{i18n.ngShowingItemsLabel}} {{totalFilteredItemsLength()}})</span>" +
-                "        </div>" +
-                "        <div class=\"ngFooterSelectedItems\" ng-show=\"multiSelect\">" +
-                "            <span class=\"ngLabel\">{{i18n.ngSelectedItemsLabel}} {{selectedItems.length}}</span>" +
-                "        </div>" +
+                "<div ng-show=\"showFooter\" class=\"ngFooterPanel row\" ng-class=\"{'ui-widget-content': jqueryUITheme, 'ui-corner-bottom': jqueryUITheme}\" ng-style=\"footerStyle()\">" +
+                "    <div class=\"ngFooterTotalItems col-md-3\" ng-class=\"{'ngNoMultiSelect': !multiSelect}\">" +
+                "        <span class=\"ngLabel\">{{i18n.ngTotalItemsLabel}} {{maxRows()}}</span><span ng-show=\"filterText.length > 0\" class=\"ngLabel\">({{i18n.ngShowingItemsLabel}} {{totalFilteredItemsLength()}})</span>" +
                 "    </div>" +
-                "    <div class=\"ngPagerContainer\" style=\"float: right; margin-top: 10px;\" ng-show=\"enablePaging\" ng-class=\"{'ngNoMultiSelect': !multiSelect}\">" +
-                "        <div style=\"float:left; margin-right: 10px;\" class=\"ngRowCountPicker\">" +
-                "            <span style=\"float: left; margin-top: 3px;\" class=\"ngLabel\">{{i18n.ngPageSizeLabel}}</span>" +
-                "            <select style=\"float: left;height: 27px; width: 100px\" ng-model=\"pagingOptions.pageSize\" >" +
+                "    <div class=\"ngPagerContainer col-md-6\" ng-class=\"{'ngNoMultiSelect': !multiSelect}\">" +
+                "        <div class=\"ngRowCountPicker\" ng-show=\"enablePaging\">" +
+                "            <span class=\"ngLabel\">{{i18n.ngPageSizeLabel}}</span>" +
+                "            <select ng-model=\"pagingOptions.pageSize\" >" +
                 "                <option ng-repeat=\"size in pagingOptions.pageSizes\">{{size}}</option>" +
                 "            </select>" +
                 "        </div>" +
-                "        <div style=\"float:left; margin-right: 10px; line-height:25px;\" class=\"ngPagerControl\" style=\"float: left; min-width: 135px;\">" +
+                "        <div class=\"ngPagerControl\" ng-show=\"enablePaging\">" +
                 "            <button class=\"ngPagerButton\" ng-click=\"pageToFirst()\" ng-disabled=\"cantPageBackward()\" title=\"{{i18n.ngPagerFirstTitle}}\"><div class=\"ngPagerFirstTriangle\"><div class=\"ngPagerFirstBar\"></div></div></button>" +
                 "            <button class=\"ngPagerButton\" ng-click=\"pageBackward()\" ng-disabled=\"cantPageBackward()\" title=\"{{i18n.ngPagerPrevTitle}}\"><div class=\"ngPagerFirstTriangle ngPagerPrevTriangle\"></div></button>" +
                 "            <input class=\"ngPagerCurrent\" min=\"1\" max=\"{{maxPages()}}\" type=\"number\" style=\"width:50px; height: 24px; margin-top: 1px; padding: 0 4px;\" ng-model=\"pagingOptions.currentPage\"/>" +
@@ -3600,11 +3595,14 @@ define(['jquery', 'app/util'], function($){
                 "            <button class=\"ngPagerButton\" ng-click=\"pageToLast()\" ng-disabled=\"cantPageToLast()\" title=\"{{i18n.ngPagerLastTitle}}\"><div class=\"ngPagerLastTriangle\"><div class=\"ngPagerLastBar\"></div></div></button>" +
                 "        </div>" +
                 "    </div>" +
+                "    <div class=\"ngFooterSelectedItems col-md-3\" ng-show=\"multiSelect\">" +
+                "        <span class=\"ngLabel\">{{i18n.ngSelectedItemsLabel}} {{selectedItems.length}}</span>" +
+                "    </div>" +
                 "</div>"
             );
 
             $templateCache.put("gridTemplate.html",
-                "<div ng-grid-menu></div>" +
+                "<div ng-grid-menu ></div>" +
                 "<div class=\"ngTopPanel\" ng-class=\"{'ui-widget-header':jqueryUITheme, 'ui-corner-top': jqueryUITheme}\" ng-style=\"topPanelStyle()\">" +
                 "    <div class=\"ngGroupPanel\" ng-show=\"showGroupPanel()\" ng-style=\"groupPanelStyle()\">" +
                 "        <div class=\"ngGroupPanelDescription\" ng-show=\"configGroups.length == 0\">{{i18n.ngGroupPanelDescription}}</div>" +
@@ -3653,7 +3651,7 @@ define(['jquery', 'app/util'], function($){
             $templateCache.put("menuTemplate.html",
                 "<div class=\"ngToolbar btn-group btn-group-md\"></div>" +
                 "<div ng-show=\"showFilter\" class=\"filter-box float-right\">" +
-                "    <input placeholder=\"{{i18n.ngSearchPlaceHolder}}\" type=\"text\" ng-model=\"filterText\"/>" +
+                "    <input type=\"text\" class=\"form-control input-sm\" placeholder=\"{{i18n.ngSearchPlaceHolder}}\" ng-model=\"filterText\"/>" +
                 "</div>" +
                 "<div ng-show=\"showColumnMenu || showFilter\" class=\"ngHeaderButton\" ng-click=\"toggleShowMenu()\" title=\"Select Columns to show\">" +
                 "    <div class=\"ngHeaderButtonArrow\"></div>" +

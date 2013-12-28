@@ -21,77 +21,77 @@
           <div class="tab-content" id="script-panels">
             <div class="tab-pane fade active in" id="create-test-task" ng-if="taskPane == 'create-test-task' ">
               <div class="row">
-                <div class="col-md-4 form-group" ng-class="{'has-error': $parent.addTestTask.usedby.$error.required}">
-                  <label for="usedby" class="sr-only">Used By: </label>
-                  <input type="text" id="usedby" class="form-control input-sm" ng-model="$parent.usedby" data-need-tooltip placeholder="Used By" title="Used By"/>
+                <div class="col-md-4 form-group" ng-class="{'has-error': !addTestTask.Usedby.$pristine && addTestTask.Usedby.$error.required}">
+                  <label for="Usedby" class="sr-only">Used By: </label>
+                  <input type="text" id="Usedby" name="Usedby" class="form-control input-sm" ng-model="Usedby" data-need-tooltip placeholder="Used By" title="Used By"/>
                 </div>
                 <div class="col-md-4 form-group">
-                  <label for="projectname" class="sr-only">Project: </label>
-                  <select class="form-control input-sm" id="projectname" ng-model="$parent.projectName" ng-options="pname.Value as pname.Label for pname in $root.ProjectNameEnum.toEnumList()" ng-init="$parent.projectName=$root.siteSetting.projectName">
+                  <label for="Projectname" class="sr-only">Project: </label>
+                  <select class="form-control input-sm" id="Projectname" name="Projectname" ng-model="ProjectName" ng-options="pname.Value as pname.Label for pname in $root.ProjectNameEnum.toEnumList()" ng-init="ProjectName=$root.siteSetting.projectName">
                   </select>
                 </div>
                 <div class="col-md-4 form-group">
-                  <label for="tasktype" class="sr-only">Task Type: </label>
-                  <select class="form-control input-sm" id="tasktype" ng-model="$parent.taskType" ng-options="ttype.Value as ttype.Label for ttype in $root.TaskTypeEnum.toEnumList() | filter: $parent.taskTypeFilter" ng-init="$parent.teskType = $root.siteSetting.taskType">
+                  <label for="Tasktype" class="sr-only">Task Type: </label>
+                  <select class="form-control input-sm" id="TaskType" name="Tasktype" ng-model="TaskType" ng-options="ttype.Value as ttype.Label for ttype in $root.TaskTypeEnum.toEnumList() | filter: taskTypeFilter" ng-init="TeskType = $root.siteSetting.taskType">
                   </select>
                 </div>
               </div>
-              <div class="row form-group" ng-class="{'has-error': $parent.addTestTask.svnurl.$invalid}">
+              <div class="row form-group" ng-class="{'has-error': !addTestTask.SvnUrl.$pristine && addTestTask.SvnUrl.$invalid}">
                 <div class="col-md-12">
-                  <label for="svnurl" class="control-label sr-only">SVN Url: </label>
-                  <input type="text" class="form-control input-sm" id="svnurl" ng-model="$parent.svnUrl"  data-need-tooltip title="SVN Url of the testing branch" placeholder="SVN Url" required />
-                  <span class="help-block" ng-show="$parent.addTestTask.svnurl.$invalid">Invalid url format!</span>
+                  <label for="SvnUrl" class="control-label sr-only">SVN Url: </label>
+                  <input type="text" class="form-control input-sm" id="SvnUrl" name="SvnUrl" ng-model="SvnUrl"  data-need-tooltip title="SVN Url of the testing branch" placeholder="SVN Url" required />
+                  <span class="help-block" ng-show=" !addTestTask.SvnUrl.$pristine && addTestTask.SvnUrl.$invalid">Invalid url format!</span>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 form-group" ng-class="{'has-error': $parent.addTestTask.revision.$invalid}">
-                  <label for="revision" class="control-label sr-only">Revision: </label>
-                  <input type="text" class="form-control input-sm" id="revision" ng-model="$parent.revision" ng-pattern='/HEAD|[r]\d{5,8}/' placeholder="Revision"  data-need-tooltip title="revision number of the SVN trunk or branch" required />
-                  <span class="help-block" ng-show="$parent.addTestTask.lfsoRevision.$invalid">Please check revision number, it should be "HEAD" or "r1325" or "23481"</span>
+                <div class="col-md-6 form-group" ng-class="{'has-error': !addTestTask.Revision.$pristine && addTestTask.Revision.$invalid}">
+                  <label for="Revision" class="control-label sr-only">Revision: </label>
+                  <input type="text" class="form-control input-sm" id="Revision" name="Revision" ng-model="Revision" ng-pattern='/HEAD|[r]\d{5,8}/' placeholder="Revision"  data-need-tooltip title="revision number of the SVN trunk or branch" required />
+                  <span class="help-block" ng-show="!addTestTask.Revision.$pristine && addTestTask.Revision.$invalid">Please check revision number, it should be "HEAD" or "r1325" or "23481"</span>
                 </div>
-                <div class="col-md-6 form-group" ng-class="{'has-error': $parent.addTestTask.lfsoRevision.$invalid}">
-                  <label for="lfsorevision" class="control-label sr-only">LFSO Rev: </label>
-                  <input type="text" class="form-control input-sm" id="lfsorevision" ng-model="$parent.lfsoRevision" ng-pattern='/HEAD|[r]\d{5,8}/i' placeholder="LFSO Revision"  data-need-tooltip title="revision number of the LFSO used in the build and/or test" data-tooltip-pos="right" required />
-                  <span class="help-block" ng-show="$parent.addTestTask.lfsoRevision.$invalid">Please check revision number, it should be "HEAD" or "r1325" or "23481"</span>
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-md-12">
-                  <label for="args" class="sr-only">Nunit Args: </label>
-                  <input type="text" class="form-control input-sm" id="args" ng-model="$parent.args" placeholder="Nunit Args"  data-need-tooltip title="Arguments to run the nunit tests"/>
+                <div class="col-md-6 form-group" ng-class="{'has-error': !addTestTask.LfsoRevision.$pristine && addTestTask.LfsoRevision.$invalid}">
+                  <label for="LfsoRevision" class="control-label sr-only">LFSO Rev: </label>
+                  <input type="text" class="form-control input-sm" id="LfsoRevision" name="LfsoRevision" ng-model="LfsoRevision" ng-pattern='/HEAD|[r]\d{5,8}/i' placeholder="LFSO Revision"  data-need-tooltip title="revision number of the LFSO used in the build and/or test" data-tooltip-pos="right" required />
+                  <span class="help-block" ng-show="!addTestTask.LfsoRevision.$pristine && addTestTask.LfsoRevision.$invalid">Please check revision number, it should be "HEAD" or "r1325" or "23481"</span>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-md-12">
-                  <label for="message" class="sr-only">Message: </label>
-                  <textarea id="message" class="form-control input-sm" ng-model="$parent.message" rows="3" placeholder="Message"></textarea>
+                  <label for="Args" class="sr-only">Nunit Args: </label>
+                  <input type="text" class="form-control input-sm" id="Args" name="Args" ng-model="Args" placeholder="Nunit Args"  data-need-tooltip title="Arguments to run the nunit tests"/>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label for="Message" class="sr-only">Message: </label>
+                  <textarea id="Message" class="form-control input-sm" ng-model="Message" rows="3" placeholder="Message"></textarea>
                 </div>
               </div>
             </div>
             <div class="tab-pane fade active in" id="using-exist-script" ng-if="taskPane == 'using-exist-script' ">
-              <dragable-Selector ng-model="$parent.selectedScripts"></dragable-Selector>
+              <dragable-Selector ng-model="SelectedScripts"></dragable-Selector>
             </div>
             <div class="tab-pane fade active in" id="input-new-script" ng-if="taskPane == 'input-new-script' ">
               <div class="row form-group">
                 <div class="col-md-4">
-                  <select name="scriptType" class="form-control" ng-model="$parent.scriptType" ng-init="scriptType = 0">
+                  <select name="ScriptType" class="form-control" ng-model="ScriptType" ng-init="ScriptType = 0">
                     <option value="0">Batch Command</option>
                     <option value="1">VBScript</option>
                   </select>
                 </div>
               </div>
               <div class="row form-group">
-                <textarea class="form-control" ng-model="$parent.scriptContent" required></textarea>
+                <textarea class="form-control" ng-model="ScriptContent" required></textarea>
               </div>
             </div>
           </div>
-          <fieldset class="node-selection">
+          <fieldset class="node-selection" ng-init="RunAtAny = true">
             <legend>Test Node to Run the Task</legend>
-            <test-node-selector data-select-all="false" data-run-at-any="true"></test-node-selector>
+            <test-node-selector data-select-all="false" run-at-any="RunAtAny" selected-test-nodes="SelectedTestNodes"></test-node-selector>
           </fieldset>
           <fieldset class="node-selection">
             <legend>Send Email After Task Finished</legend>
-            <email-list ng-model="emailList"></email-list>
+            <email-list ng-model="EmailList"></email-list>
           </fieldset>
         </div>
         <div class="modal-footer">

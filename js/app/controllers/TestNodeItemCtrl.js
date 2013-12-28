@@ -47,33 +47,22 @@ define(['app/TestNodeController', 'app/services/services'],
                 };
                 $scope.init();
             }
-        ]).controller('PendingTasksCtrl', ['$scope', '$rootScope', 'TNCService', 
-            function($scope, $rootScope, TNCService) {
-                $scope.columnDefs = [
-                    { field: 'NodeName', displayName: 'Node', groupable:false},
-                    { field: 'UserName', displayName: 'User', groupable:false},
-                    //{ field: 'Status', displayName: 'Status', groupable:false},
-                    { field: 'ProjectName', displayName: 'Project', groupable:false},
-                    { field: 'TaskType', displayName: 'TaskType', groupable:false},
-                    { field: 'SvnUrl', displayName: 'SvnUrl', groupable:false},
-                    { field: 'TestArgs', displayName: 'TestArgs', groupable:false},
-                    { field: 'Revision', displayName: 'Revision', groupable:false},
-                    { field: 'LfsoRevision', displayName: 'LfsoRev', groupable:false}/*,
-                    { field: 'StartTime', displayName: 'StartTime', groupable:false},
-                    { field: 'FinishTime', displayName: 'FinishTime', groupable:false},
-                    { field: 'Archived', displayName: 'Archived', groupable:false},
-                    { field: 'Messages', displayName: 'Messages', groupable:false}*/
-                ];
+        ]).controller('PendingTasksCtrl', ['$scope', '$rootScope', '$gridFactory', '$dialogService', 'TNCService',
+            function($scope, $rootScope, $gridFactory, $dialogService, TNCService) {
+                $scope.columnDefs = $gridFactory.getColumnsByGridId('pendingTasksGrid');
                 $scope.CurrentTasks = TNCService.CurrentTasks;
 
                 $scope.AddNewTask = function(scope) {
-                    console.log('hele');
+                    $dialogService.show('#CreateTaskDlg', 'create-test-task');
+                };
+                $scope.ModifyTask = function(scope) {
+                    $dialogService.show('#CreateTaskDlg', 'create-test-task', scope.selectedItems[0]);
                 };
                 $scope.DeleteTasks = function(scope) {
-
-                };
-                $scope.CopyTask = function(scope) {
-
+                    if(!confirm("Delete them all?")){
+                        return;
+                    }
+                    console.log('Delete');
                 };
                 $scope.CloneTask = function(scope) {
 
@@ -86,8 +75,12 @@ define(['app/TestNodeController', 'app/services/services'],
                     columnDefs: 'columnDefs',
                     showColumnMenu: true,
                     showFilter: true,
-                    showFooter: true,
                     showSelectionCheckbox: true,
+                    showFooter: true,
+                    footerRowHeight: 30,
+                    enablePaging: true,
+                    enableColumnResize: true,
+                    pagingOptions: { pageSizes: [20, 50, 100], pageSize: 20, totalServerItems: 0, currentPage: 1 },
                     toolbars: [{
                         id: 'Add',
                         label: 'Add',
@@ -95,22 +88,22 @@ define(['app/TestNodeController', 'app/services/services'],
                         disabled: function(scope) { return false; },
                         click: $scope.AddNewTask
                     }, {
+                        id: 'Modify',
+                        label: 'Modify',
+                        title: 'Modify Test/Script Task',
+                        disabled: function(scope) { return scope.selectedItems.length !== 1; },
+                        click: $scope.ModifyTask
+                    }, {
                         id: 'Delete',
                         label: 'Delete',
                         title: 'Delete Task(s)',
-                        disabled: function(scope) { return scope.selectedItemCount === 0; },
+                        disabled: function(scope) { return scope.selectedItems.length === 0; },
                         click: $scope.DeleteTasks
-                    }, {
-                        id: 'Copy',
-                        label: 'Copy',
-                        title: 'Copy the task content to create a new one',
-                        disabled: function(scope) { return scope.selectedItemCount !== 1; },
-                        click: $scope.CopyTask
                     }, {
                         id: 'Clone',
                         label: 'Clone',
                         title: 'Duplicate the selected tasks',
-                        disabled: function(scope) { return scope.selectedItemCount === 0; },
+                        disabled: function(scope) { return scope.selectedItems.length === 0; },
                         click: $scope.CloneTask
                     }, {
                         id: 'Refresh',
@@ -120,13 +113,31 @@ define(['app/TestNodeController', 'app/services/services'],
                         click: $scope.Refresh
                     }]
                 };
+                $scope.$on('updatePendingTasks', function(gridData) {
+                    $scope.CurrentTasks = gridData;
+                    $scope.$apply();
+                    console.log('I will update the grid');
+                });
             }
-        ]).controller('FinishedTasksCtrl', ['$scope', '$rootScope', 'TNCService', 
-            function($scope, $rootScope, TNCService) {
-                $scope.columnDefs = [];
+        ]).controller('FinishedTasksCtrl', ['$scope', '$rootScope', '$gridFactory', 'TNCService',
+            function($scope, $rootScope, $gridFactory, TNCService) {
+                $scope.columnDefs = $gridFactory.getColumnsByGridId('finishedTasksGrid');
                 $scope.CurrentTasks = TNCService.CurrentTasks;
                 $scope.gridOption = { 
-                    data: 'CurrentTasks'
+                    data: 'CurrentTasks',
+                    columnDefs: 'columnDefs',
+                    showColumnMenu: true,
+                    showFilter: true,
+                    showFooter: true,
+                    enablePaging: true,
+                    pagingOptions: { pageSizes: [20, 50, 100], pageSize: 20, totalServerItems: 0, currentPage: 1 },
+                    multiSelect: false,
+                    footerRowHeight: 30,
+                    rowHeight: 60,
+                    enableColumnResize: true,
+                    enableColumnReordering: true,
+                    enableRowSelection: true,
+                    enableRowReordering: true
                 };
             }
         ]);

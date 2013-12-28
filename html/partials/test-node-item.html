@@ -12,6 +12,7 @@
           <button class="btn btn-default" id="Duplicate" ng-show="testNode.Status.Value > 1">Duplicate</button>
         </div>
         <span class='ui-icon ui-icon-minusthick float-right hide-toggle' ng-show="testNode.Status.Value > 1"></span>
+        <span class='float-right glyphicon glyphicon-refresh item-refresh' title='Refresh Content'></span>
       </div>
     </div>
   </div>
@@ -34,7 +35,7 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <span id="SvnUrl" title="{{testTask.SvnUrl}}" ng-bind="testTask.SvnUrl"></span>
+            <span id="SvnUrl" title="{{testTask.SvnUrl}}" ng-bind="testTask.SvnUrl | svnUrlFilter"></span>
           </div>
         </div>
         <div class="row">
@@ -51,8 +52,8 @@
         <div id="Messages">
           <p ng-bind="testTask.Messages"></p>
         </div>
-        <div class="row" id="Links">
-          <a href="#">Log</a>&nbsp;<a href="#">Output</a>&nbsp;<a href="#">ResultHtml</a>&nbsp;<a href="#">ResultXML</a>
+        <div class="row log-links">
+          <a href="{{value}}" ng-repeat="(key, value) in testTask.Logs">{{key}}</a>
         </div>
       </div>
     </div>

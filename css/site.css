@@ -448,7 +448,7 @@ ul#selected-items, ul#available-items{
     min-height: 180px !important;
 }
 .gridStyle {
-    margin: 10px 3px 5px 3px;
+    margin: 10px 3px 40px 3px;
     border: 1px solid rgb(212,212,212);
     width: 100%;
     height: 400px;
@@ -469,3 +469,32 @@ ul#selected-items, ul#available-items{
 .ngColListItem label {
     margin-right: 20px;
 }
+span.log-links {
+    line-height: 14px;
+    display: list-item;
+}
+.log-links a{
+    font-size: 13px;
+    padding: 0 2px;
+    text-decoration: underline;
+    display: inline-block;
+}
+    .log-links a:hover{
+        color: #428bca;
+    }
+div[ng-grid-menu]{
+    min-height: 30px;
+}
+.break-word{
+    white-space: pre-line;
+    padding: 0;
+}
+.item-refresh{
+    font-size: 14px;
+    margin-top: 3px;
+    margin-right: 3px;
+    color: #72a7cf;
+}
+    .item-refresh:hover{
+        color: #1A6AA7;
+    }

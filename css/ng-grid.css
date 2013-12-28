@@ -377,22 +377,24 @@
   border-top: 1px solid #d4d4d4;
   position: relative;
 }
-.nglabel {
-  display: block;
-  float: left;
-  font-weight: bold;
-  padding-right: 5px;
-}
+
 .ngTotalSelectContainer {
   float: left;
-  margin: 5px;
-  margin-top: 7px;
+  width: 100%;
+  margin: 0 auto;
 }
-.ngFooterSelectedItems {
-  padding: 2px;
+.ngFooterSelectedItems, .ngFooterTotalItems {
+  padding: 4px;
+  display: inline-block;
+}
+.ngFooterSelectedItems .ngLabel {
+  float: right;
 }
 .ngFooterTotalItems.ngnoMultiSelect {
   padding: 0 !important;
+}
+.ngPagerContainer {
+  padding: 1px 3px 1px 3px !important;
 }
 .ngPagerFirstBar {
   width: 10px;
@@ -434,6 +436,23 @@
   height: 12px;
   margin-left: 1px;
 }
-.ngFooterTotalItems {
-  padding: 2px;
+.ngPagerControl{
+  float: left;
+  min-width: 135px;
+  margin-right: 10px;
+  line-height: 25px;
 }
+.ngRowCountPicker{
+  float: left;
+  margin-right: 10px;
+}
+  .ngRowCountPicker .ngLabel{
+    float: left;
+    margin-top: 3px;
+    margin-right: 2px;
+  }
+  .ngRowCountPicker select {
+    float: left;
+    height: 27px;
+    width: 100px;
+  }

@@ -5,7 +5,10 @@ define(['app/TestNodeController', 'app/directives/Widgets', 'jslimscroll','btswi
             .directive('testNodeSelector', function() {
                 return {
                     restrict: 'EA',
-                    scope: { },
+                    scope: { 
+                        selectedTestNodes: '=',
+                        runAtAny: '='
+                    },
                     replace: true,
                     transclude: false,
                     templateUrl: '/html/partials/test-node-selector.html',
@@ -16,10 +19,12 @@ define(['app/TestNodeController', 'app/directives/Widgets', 'jslimscroll','btswi
                                 return {name: item.NodeName, selected: $scope.selectAll};
                             });
                         };
+                        $scope.updateSelectedNodes = function(){
+                            $scope.selectedTestNodes = $.merge($.map($scope.testNodes, function(item, index){ if(item.selected) return item.name; }), $scope.extraNodes.split(/[,;]/));
+                        };
                     },
                     link: function($scope, element, attrs) {
                         $scope.selectAll = eval(attrs.selectAll);
-                        $scope.runAtAny = eval(attrs.runAtAny);
                         $scope.init();
                         var selAllEle = element.find('#select-all');
                         $scope.$watch(function(){

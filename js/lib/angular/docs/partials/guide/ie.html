@@ -16,7 +16,7 @@ it works for your particular app.</p>
 <h2 id="short-version">Short Version</h2>
 <p>To make your Angular application work on IE please make sure that:</p>
 <ol>
-<li><p>You polyfill JSON.stringify if necessary (IE7 will need this). You can use
+<li><p>You polyfill JSON.stringify for IE7 and below. You can use
 <a href="https://github.com/douglascrockford/JSON-js">JSON2</a> or
 <a href="http://bestiejs.github.com/json3/">JSON3</a> polyfills for this.
 <pre class="prettyprint linenums">
@@ -44,7 +44,7 @@ it works for your particular app.</p>
 <li><p>you <strong>do not</strong> use custom element tags such as <code>&lt;ng:view&gt;</code> (use the attribute version
 <code>&lt;div ng-view&gt;</code> instead), or</p>
 </li>
-<li><p>if you <strong>do use</strong> custom element tags, then you must take these steps to make IE happy:
+<li><p>if you <strong>do use</strong> custom element tags, then you must take these steps to make IE 8 and below happy:
 <pre class="prettyprint linenums">
        &lt;!doctype html&gt;
        &lt;html xmlns:ng="http://angularjs.org" id="ng-app" ng-app="optionalModuleName"&gt;

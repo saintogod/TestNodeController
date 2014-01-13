@@ -98,7 +98,7 @@ view, Angular will use the <code>phone-list.html</code> template and the <code>P
 </ul>
 <p>We reused the <code>PhoneListCtrl</code> controller that we constructed in previous steps and we added a new,
 empty <code>PhoneDetailCtrl</code> controller to the <code>app/js/controllers.js</code> file for the phone details view.</p>
-<p><code>$route.otherwise({redirectTo: &#39;/phones&#39;})</code> triggers a redirection to <code>/phones</code> when the browser
+<p><code>$routeProvider.otherwise({redirectTo: &#39;/phones&#39;})</code> triggers a redirection to <code>/phones</code> when the browser
 address doesn&#39;t match either of our routes.</p>
 <p>Note the use of the <code>:phoneId</code> parameter in the second route declaration. The <code>$route</code> service uses
 the route declaration — <code>&#39;/phones/:phoneId&#39;</code> — as a template that is matched against the current

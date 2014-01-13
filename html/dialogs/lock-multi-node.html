@@ -1,0 +1,48 @@
+<div id="LockNodesDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="myModalLabel" ng-controller="LockNodesCtrl">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form name="lockNodesForm" class="form-inline" role="form" mg-submit="save()" novalidate>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title" id="myModalLabel">Lock Nodes</h4>
+        </div>
+        <div class="modal-body">
+          <fieldset>
+            <legend>Basic Information</legend>
+            <div class="row">
+              <div class="col-md-2">
+                <label for="usedby">Used By:</label>
+              </div>
+              <div class="col-md-10">
+                <input type="text" id="usedby" name="usedby" ng-model="usedby" required placeholder="Used By" class="form-control" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <label for="remark" class="form-label">Remarks:</label>
+              </div>
+              <div class="col-md-10">
+                <textarea id="remark" name="remark" placeholder="The reason for lock this/those node(s)." class="form-control"></textarea>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset ng-hide="singleNodeMode">
+            <legend>Test Nodes</legend>
+            <div>
+              <span class="col-md-3" ng-repeat="node in TestNodes">
+                <label for="{{node.name}}" class="label-for-checkbox" ng-class="{'disabled-label': node.disabled}">
+                  <input type="checkbox" name="{{node.name}}" ng-disabled="node.disabled" ng-model="node.selected" ng-checked="node.selected"/>{{node.name}}
+                </label>
+              </span>
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" type="submit" ng-click='save()' id="FinishBtn" ng-disabled="lockNodesForm.$invalid || selectedNodes().length < 1">OK</button>
+          <button class="btn" type="reset" ng-click='reset()' id="ResetBtn" >Reset</button>
+          <button class="btn" type="button" data-dismiss="modal" aria-hidden="true" ng-click='cancel()'>Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

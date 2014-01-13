@@ -30,15 +30,18 @@ define(['app/util'], function () {
 
         var EnumItem = {
             equals: function(enumItem) {
-                if(arguments.length === 0)
+                if(arguments.length === 0) {
                     return false;
-                else if(arguments.length === 1)
-                    return this.Value === enumItem.Value;
-                else {
-                    for(var i = 0; i < arguments.length; i++)
-                        if(this.Value === arguments[i].Value)
+                } else if(arguments.length === 1) {
+                    return this.Value === ($.isNumeric(enumItem) ? enumItem : enumItem.Value);
+                } else {
+                    for(var i = 0; i < arguments.length; i++) {
+                        var item = arguments[i];
+                        if($.isNumeric(item) ? item : item.Value)
                             return true;
+                    }
                 }
+                return false;
             }
         };
         /**

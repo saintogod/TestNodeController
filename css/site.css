@@ -231,7 +231,7 @@ footer {
     #controlpanel .btn{
         height: 24px;
     }
-    #controlpanel .btn:first-child{
+    #controlpanel>.btn-group>.btn:first-child{
         -webkit-border-bottom-left-radius: 16px;
         border-bottom-left-radius: 16px;
         -moz-border-bottom-left-radius: 16px;
@@ -498,3 +498,12 @@ div[ng-grid-menu]{
     .item-refresh:hover{
         color: #1A6AA7;
     }
+.label-for-checkbox{
+    padding: 0 2px;
+}
+.label-for-checkbox input[type="checkbox"]{
+    margin: 0 5px 0 0;
+}
+label.disabled-label{
+    background-color: #C7C3C3;
+}

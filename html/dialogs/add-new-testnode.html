@@ -1,0 +1,46 @@
+<div aria-hidden="true" aria-labelledby="myModalLabel" class="modal fade" id="AddNewTestNodeDlg" ng-controller="AddNewTestNodeCtrl" role="dialog" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="form-inline" name="addTestNodeForm" role="form">
+        <div class="modal-header">
+          <button aria-hidden="true" class="close" data-dismiss="modal" type="button">×</button>
+          <h4 class="modal-title" id="myModalLabel">Add New Test Node</h4>
+        </div>
+        <div class="modal-body">
+          <fieldset class="node-info">
+            <legend>Node Information</legend>
+            <div class="row form-group">
+              <label class="form-label col-md-4" for="nodeAddress">Node Address: </label>
+              <div class="col-md-8">
+                <input type="text" class="form-control input-sm" name="nodeAddress" ng-model="newNode.address" required placeholder="Address"/>
+              </div>
+            </div>
+            <div class="row form-group">
+              <label class="form-label col-md-4" for="executable">Enable Task Execute: </label>
+              <div class="col-md-8">
+                <input type="checkbox" class="input-sm" name="executable" ng-model="newNode.enableExecuteTask"/>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset class="node-operation">
+            <legend>Operation After Added</legend>
+            <div class="row form-group">
+              <div class="col-md-4">
+                <input type="checkbox" name="autoLock" id="autoLock" ng-model="autoLock"/>
+                <label class="form-label" for="autoLock">Lock node by</label>
+              </div>
+              <div class="col-md-8" >
+                <input type="text" class="form-control input-sm" name="userName" ng-model="userName" ng-required="autoLock" placeholder="Lock By" ng-disabled="!autoLock">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" id="FinishBtn" ng-click="save()" ng-disabled="addTestNodeForm.$invalid" type="submit">OK</button>
+          <button class="btn" id="ResetBtn" ng-click="reset()" type="reset">Reset</button>
+          <button aria-hidden="true" class="btn" data-dismiss="modal" ng-click="cancel()" type="button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

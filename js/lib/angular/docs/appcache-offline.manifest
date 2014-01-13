@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2013-12-19T23:50:39.708Z
+# 2014-01-10T20:38:36.299Z
 
 # cache all of these
 CACHE:
@@ -274,7 +274,6 @@ partials/error/$compile:tpload.html
 partials/error/$compile:tplrt.html
 partials/error/$compile:uterdir.html
 partials/error/$controller:noscp.html
-partials/error/$httpBackend:noxhr.html
 partials/error/$injector:cdep.html
 partials/error/$injector:itkn.html
 partials/error/$injector:modulerr.html
@@ -372,6 +371,7 @@ partials/tutorial/step_10.html
 partials/tutorial/step_11.html
 partials/tutorial/step_12.html
 partials/tutorial/the_end.html
+ptore2e/api/ng.directive:ngClick_test.js
 
 FALLBACK:
 / /build/docs/index.html

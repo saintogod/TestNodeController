@@ -82,11 +82,20 @@
         <div id="controlpanel" ng-controller="ControllerPanelCtrl">
           <div class="btn-group btn-group-xs">
             <button id="LockMulti" class="btn btn-default" ng-click="lockMulti()">Lock</button>
-            <button id="ReleaseMulti" class="btn btn-default" ng-click="realseMulti()">UnLock</button>
+            <!-- <button id="ReleaseMulti" class="btn btn-default" ng-click="realseMulti()">UnLock</button> -->
             <button id="CreateTask" class="btn btn-default" ng-click="createTask()">New Task</button>
-            <button id="ResetId" class="btn btn-default" title="Reset the task id to 1" ng-click="resetId()">Reset Id</button>
-            <button id="ReloadStatus" class="btn btn-default" title="Reload TestNode status from config file" ng-click="reloadStatus()">Reload</button>
-            <button id="SiteSetting" class="btn btn-default" title="Modify the default site setting for the current user" ng-click="setSite()">Setting</button>
+            <button id="AddNewNode" class="btn btn-default" title="Add new test node to current system" ng-click="addNode()">Add Node</button>
+            <div class="btn-group btn-group-xs">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Site Setting
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="#" title="Reset the task id to 1" ng-click="resetId()">Reset Task Id</a></li>
+                <li><a href="#" title="Reload TestNode status from config file" ng-click="reloadStatus()">Reload Config</a></li>
+                <li><a href="#" title="Modify the default site setting for the current user" ng-click="setSite()">User Setting</a></li>
+              </ul>
+            </div>
           </div>
           <tnc-search-box></tnc-search-box>
         </div>

@@ -182,8 +182,10 @@ and will rerun the tests for you. Now isn&#39;t that sweet?</p>
 <pre><code>    &lt;p&gt;Total number of phones: {{phones.length}}&lt;/p&gt;</code></pre>
 </li>
 <li><p>Create a new model property in the controller and bind to it from the template. For example:</p>
-<pre><code>    $scope.hello = &quot;Hello, World!&quot;</code></pre>
-<p>Refresh your browser to make sure it says, &quot;Hello, World!&quot;</p>
+<pre><code>    $scope.name = &quot;World&quot;</code></pre>
+<p>Then add a new binding to <code>index.html</code>:</p>
+<pre><code>    &lt;p&gt;Hello, {{name}}!&lt;/p&gt;</code></pre>
+<p>Refresh your browser and verifies that it says &quot;Hello, World!&quot;.</p>
 </li>
 <li><p>Create a repeater that constructs a simple table:</p>
 <pre><code>    &lt;table&gt;
